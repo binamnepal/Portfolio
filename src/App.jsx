@@ -1,6 +1,5 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import Login from './pages/Login'   
+import { Routes, Route } from 'react-router-dom'  
 import Applayout from './layout/App-layout'
 import LenisScroll from './components/LenisScroll'
 import Contact from './components/Contact'
@@ -8,7 +7,7 @@ import About from './components/About'
 import Services from './components/Services'
 import Work from './components/Work'
 import Navbar from './components/Navbar'
-
+import Login from './pages/Login'
 export default function App() {
     return (
         <>
@@ -21,6 +20,7 @@ export default function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/work" element={<Work />} />
+                <Route path="/login" element={<Login />} />
             </Routes>
         </>
     )
