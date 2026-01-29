@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
-
+import { Formik } from "formik";
+import * as Yup from "yup";
+import { render } from "react-dom";
 export default function Contact() {
     const [result, setResult] = useState("");
     const onSubmit = async (event) => {
@@ -13,7 +15,7 @@ export default function Contact() {
         setResult("Sending....");
         const formData = new FormData(event.target);
 
-        // ----- Enter your Web3 Forms Access key below---------
+      
 
         formData.append("access_key", "--- enter your access key here-------");
 
@@ -83,24 +85,109 @@ export default function Contact() {
             <h4 className="text-center mb-2 text-lg font-Ovo">Connect with me</h4>
             <h2 className="text-center text-5xl font-Ovo">Get in touch</h2>
             <p className="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo">I&apos;d love to hear from you! If you have any questions, comments or feedback, please use the form below.</p>
+     <Formik
+    initialValues={{ name: "", email: "", message: "" }}
+    validationSchema={Yup.object().shape({
+        name: Yup.string().required("Name is required"),
+        email: Yup.string().email("Invalid email").required("Required"),
+        message: Yup.string().min(10, "Message too short").required("Required"),
+    })}
+    onSubmit={async (values) => {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        alert(JSON.stringify(values, null, 2));
+    }}
+    >
+    {(props) => {
+        const {
+        values,
+        touched,
+        errors,
+        dirty,
+        isSubmitting,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        handleReset,
+        } = props;
 
-            <form onSubmit={onSubmit} className="max-w-2xl mx-auto">
+    return (
+      <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-lg border border-gray-100 space-y-5">
+        
+      
+        <div>
+          <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-1">Name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            placeholder="sandip lamichane"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.name}
+            className={`w-full px-4 py-2 border rounded-lg outline-none transition-all ${
+              errors.name && touched.name ? "border-red-500 ring-1 ring-red-500" : "border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+            }`}
+          />
+          {errors.name && touched.name && <div className="mt-1 text-xs text-red-500">{errors.name}</div>}
+        </div>
 
-                <input type="hidden" name="subject" value="Eliana Jade - New form Submission" />
+      
+        <div>
+          <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-1">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="john@example.com"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.email}
+            className={`w-full px-4 py-2 border rounded-lg outline-none transition-all ${
+              errors.email && touched.email ? "border-red-500 ring-1 ring-red-500" : "border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+            }`}
+          />
+          {errors.email && touched.email && <div className="mt-1 text-xs text-red-500">{errors.email}</div>}
+        </div>
 
-                <div className="grid grid-cols-auto gap-6 mt-10 mb-8">
-                    <input type="text" placeholder="Enter your name" className="flex-1 px-3 py-2 focus:ring-1 outline-none border border-gray-300 dark:border-white/30 rounded-md bg-white dark:bg-darkHover/30" required name="name" />
+        <div>
+          <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-1">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            placeholder="How can we help?"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.message}
+            className={`w-full px-4 py-2 border rounded-lg outline-none transition-all resize-none ${
+              errors.message && touched.message ? "border-red-500 ring-1 ring-red-500" : "border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+            }`}
+          />
+          {errors.message && touched.message && <div className="mt-1 text-xs text-red-500">{errors.message}</div>}
+        </div>
 
-                    <input type="email" placeholder="Enter your email" className="flex-1 px-3 py-2 focus:ring-1 outline-none border border-gray-300 dark:border-white/30 rounded-md bg-white dark:bg-darkHover/30" required name="email" />
-                </div>
-                <textarea rows="6" placeholder="Enter your message" className="w-full px-4 py-2 focus:ring-1 outline-none border border-gray-300 dark:border-white/30 rounded-md bg-white mb-6 dark:bg-darkHover/30" required name="message"></textarea>
-                <div className="h-captcha mb-6 max-w-full" data-captcha="true"></div>
-                <button type='submit' className="py-2 px-8 w-max flex items-center justify-between gap-2 bg-black/80 text-white rounded-full mx-auto hover:bg-black duration-500 dark:bg-transparent dark:border dark:border-white/30 dark:hover:bg-darkHover">
-                Submit now
-                    <img src="./assets/right-arrow-white.png" alt="" className="w-4" />
-                </button>
-                <p className='mt-4'>{result}</p>
-            </form>
+        <div className="flex gap-4 pt-2">
+          <button
+            type="button"
+            onClick={handleReset}
+            disabled={!dirty || isSubmitting}
+            className="flex-1 px-4 py-2 text-sm font-medium text-gray-600 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 disabled:opacity-50 transition-colors"
+          >
+            Reset
+          </button>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="flex-1 px-4 py-2 text-sm font-bold text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:bg-blue-300 transition-all shadow-md shadow-blue-100"
+          >
+            {isSubmitting ? "Sending..." : "Send Message"}
+          </button>
+        </div>
+      </form>
+    );
+  }}
+</Formik>
+
         </div>
     )
 }

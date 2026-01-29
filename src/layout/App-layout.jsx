@@ -8,13 +8,13 @@ import Navbar from '../components/Navbar'
 const Applayout = () => {
     return (
         <>
-             <Navbar />
-            <Header />
-            <About />
-            <Services />
-            <Work />
-            <Contact />
-            <Footer />
+                <Navbar />
+                <Header />
+                <About />
+                <Services />
+                <Work />
+                <Contact />
+                <Footer />
         </>
     );
 };      
