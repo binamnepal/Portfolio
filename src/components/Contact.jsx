@@ -3,7 +3,6 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { render } from "react-dom";
 import Footer from './Footer';
-import Axios from 'axios';
 export default function Contact() {
     const [result, setResult] = useState("");
     const onSubmit = async (event) => {
@@ -19,16 +18,16 @@ export default function Contact() {
 
       
 
-        formData.append("access_key", "binam123");
+        formData.append("access_key", "--- enter your access key here-------");
 
         const res = {
             success: true,
             message: "Message sent successfully"
         };
-         const res = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            body: formData
-        }).then((res) => res.json());
+        // const res = await fetch("https://api.web3forms.com/submit", {
+        //     method: "POST",
+        //     body: formData
+        // }).then((res) => res.json());
 
         if (res.success) {
             console.log("Success", res);
@@ -96,6 +95,7 @@ export default function Contact() {
     })}
     onSubmit={async (values) => {
         await new Promise((resolve) => setTimeout(resolve, 500));
+
         alert(JSON.stringify(values, null, 2));
     }}
     >
