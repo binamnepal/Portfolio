@@ -37,9 +37,10 @@ const RAW_RUNTIME_STATE =
           ["eslint", "virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:9.39.2"],\
           ["eslint-plugin-react-hooks", "virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:7.0.1"],\
           ["eslint-plugin-react-refresh", "virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:0.4.26"],\
+          ["formik", "virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:2.4.9"],\
           ["globals", "npm:16.5.0"],\
           ["lenis", "virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:1.3.17"],\
-          ["lucide", "npm:0.563.0"],\
+          ["lucide-react", "virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:0.563.0"],\
           ["postcss", "npm:8.5.6"],\
           ["pro2", "workspace:."],\
           ["react", "npm:19.2.4"],\
@@ -1344,6 +1345,27 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/hoist-non-react-statics", [\
+      ["npm:3.3.7", {\
+        "packageLocation": "../../../Users/binam/AppData/Local/Yarn/Berry/cache/@types-hoist-non-react-statics-npm-3.3.7-efbaafecfe-10c0.zip/node_modules/@types/hoist-non-react-statics/",\
+        "packageDependencies": [\
+          ["@types/hoist-non-react-statics", "npm:3.3.7"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:1e026f6b2a5dced98182b5b870820fd88b33af42dba45b4a287ece39cfe7299222a1fe5aeb980aa1460e3b3147dfb103d2214c2afd7eed054b23b488341c5745#npm:3.3.7", {\
+        "packageLocation": "./.yarn/__virtual__/@types-hoist-non-react-statics-virtual-cf78305ec0/4/Users/binam/AppData/Local/Yarn/Berry/cache/@types-hoist-non-react-statics-npm-3.3.7-efbaafecfe-10c0.zip/node_modules/@types/hoist-non-react-statics/",\
+        "packageDependencies": [\
+          ["@types/hoist-non-react-statics", "virtual:1e026f6b2a5dced98182b5b870820fd88b33af42dba45b4a287ece39cfe7299222a1fe5aeb980aa1460e3b3147dfb103d2214c2afd7eed054b23b488341c5745#npm:3.3.7"],\
+          ["@types/react", "npm:19.2.10"],\
+          ["hoist-non-react-statics", "npm:3.3.2"]\
+        ],\
+        "packagePeers": [\
+          "@types/react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/json-schema", [\
       ["npm:7.0.15", {\
         "packageLocation": "../../../Users/binam/AppData/Local/Yarn/Berry/cache/@types-json-schema-npm-7.0.15-fd16381786-10c0.zip/node_modules/@types/json-schema/",\
@@ -1811,6 +1833,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["deepmerge", [\
+      ["npm:2.2.1", {\
+        "packageLocation": "../../../Users/binam/AppData/Local/Yarn/Berry/cache/deepmerge-npm-2.2.1-44c00cbffa-10c0.zip/node_modules/deepmerge/",\
+        "packageDependencies": [\
+          ["deepmerge", "npm:2.2.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["detect-libc", [\
       ["npm:2.1.2", {\
         "packageLocation": "../../../Users/binam/AppData/Local/Yarn/Berry/cache/detect-libc-npm-2.1.2-d0c382b1e2-10c0.zip/node_modules/detect-libc/",\
@@ -2254,6 +2285,36 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["formik", [\
+      ["npm:2.4.9", {\
+        "packageLocation": "../../../Users/binam/AppData/Local/Yarn/Berry/cache/formik-npm-2.4.9-a83657086b-10c0.zip/node_modules/formik/",\
+        "packageDependencies": [\
+          ["formik", "npm:2.4.9"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:2.4.9", {\
+        "packageLocation": "./.yarn/__virtual__/formik-virtual-1e026f6b2a/4/Users/binam/AppData/Local/Yarn/Berry/cache/formik-npm-2.4.9-a83657086b-10c0.zip/node_modules/formik/",\
+        "packageDependencies": [\
+          ["@types/hoist-non-react-statics", "virtual:1e026f6b2a5dced98182b5b870820fd88b33af42dba45b4a287ece39cfe7299222a1fe5aeb980aa1460e3b3147dfb103d2214c2afd7eed054b23b488341c5745#npm:3.3.7"],\
+          ["@types/react", "npm:19.2.10"],\
+          ["deepmerge", "npm:2.2.1"],\
+          ["formik", "virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:2.4.9"],\
+          ["hoist-non-react-statics", "npm:3.3.2"],\
+          ["lodash", "npm:4.17.23"],\
+          ["lodash-es", "npm:4.17.23"],\
+          ["react", "npm:19.2.4"],\
+          ["react-fast-compare", "npm:2.0.4"],\
+          ["tiny-warning", "npm:1.0.3"],\
+          ["tslib", "npm:2.8.1"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["fraction.js", [\
       ["npm:5.3.4", {\
         "packageLocation": "../../../Users/binam/AppData/Local/Yarn/Berry/cache/fraction.js-npm-5.3.4-52b06f74c0-10c0.zip/node_modules/fraction.js/",\
@@ -2390,6 +2451,16 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["hermes-estree", "npm:0.25.1"],\
           ["hermes-parser", "npm:0.25.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["hoist-non-react-statics", [\
+      ["npm:3.3.2", {\
+        "packageLocation": "../../../Users/binam/AppData/Local/Yarn/Berry/cache/hoist-non-react-statics-npm-3.3.2-e7b709e6c1-10c0.zip/node_modules/hoist-non-react-statics/",\
+        "packageDependencies": [\
+          ["hoist-non-react-statics", "npm:3.3.2"],\
+          ["react-is", "npm:16.13.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2816,6 +2887,24 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["lodash", [\
+      ["npm:4.17.23", {\
+        "packageLocation": "../../../Users/binam/AppData/Local/Yarn/Berry/cache/lodash-npm-4.17.23-50bdb1c01a-10c0.zip/node_modules/lodash/",\
+        "packageDependencies": [\
+          ["lodash", "npm:4.17.23"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["lodash-es", [\
+      ["npm:4.17.23", {\
+        "packageLocation": "../../../Users/binam/AppData/Local/Yarn/Berry/cache/lodash-es-npm-4.17.23-b4279789e6-10c0.zip/node_modules/lodash-es/",\
+        "packageDependencies": [\
+          ["lodash-es", "npm:4.17.23"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["lodash.merge", [\
       ["npm:4.6.2", {\
         "packageLocation": "../../../Users/binam/AppData/Local/Yarn/Berry/cache/lodash.merge-npm-4.6.2-77cb4416bf-10c0.zip/node_modules/lodash.merge/",\
@@ -2842,11 +2931,24 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["lucide", [\
+    ["lucide-react", [\
       ["npm:0.563.0", {\
-        "packageLocation": "../../../Users/binam/AppData/Local/Yarn/Berry/cache/lucide-npm-0.563.0-0db83a7f5d-10c0.zip/node_modules/lucide/",\
+        "packageLocation": "../../../Users/binam/AppData/Local/Yarn/Berry/cache/lucide-react-npm-0.563.0-62353e14d5-10c0.zip/node_modules/lucide-react/",\
         "packageDependencies": [\
-          ["lucide", "npm:0.563.0"]\
+          ["lucide-react", "npm:0.563.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:0.563.0", {\
+        "packageLocation": "./.yarn/__virtual__/lucide-react-virtual-cb9f223f6e/4/Users/binam/AppData/Local/Yarn/Berry/cache/lucide-react-npm-0.563.0-62353e14d5-10c0.zip/node_modules/lucide-react/",\
+        "packageDependencies": [\
+          ["@types/react", "npm:19.2.10"],\
+          ["lucide-react", "virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:0.563.0"],\
+          ["react", "npm:19.2.4"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
         ],\
         "linkType": "HARD"\
       }]\
@@ -3407,9 +3509,10 @@ const RAW_RUNTIME_STATE =
           ["eslint", "virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:9.39.2"],\
           ["eslint-plugin-react-hooks", "virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:7.0.1"],\
           ["eslint-plugin-react-refresh", "virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:0.4.26"],\
+          ["formik", "virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:2.4.9"],\
           ["globals", "npm:16.5.0"],\
           ["lenis", "virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:1.3.17"],\
-          ["lucide", "npm:0.563.0"],\
+          ["lucide-react", "virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:0.563.0"],\
           ["postcss", "npm:8.5.6"],\
           ["pro2", "workspace:."],\
           ["react", "npm:19.2.4"],\
@@ -3487,6 +3590,24 @@ const RAW_RUNTIME_STATE =
         "packagePeers": [\
           "@types/react",\
           "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["react-fast-compare", [\
+      ["npm:2.0.4", {\
+        "packageLocation": "../../../Users/binam/AppData/Local/Yarn/Berry/cache/react-fast-compare-npm-2.0.4-ab3f6356e2-10c0.zip/node_modules/react-fast-compare/",\
+        "packageDependencies": [\
+          ["react-fast-compare", "npm:2.0.4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["react-is", [\
+      ["npm:16.13.1", {\
+        "packageLocation": "../../../Users/binam/AppData/Local/Yarn/Berry/cache/react-is-npm-16.13.1-a9b9382b4f-10c0.zip/node_modules/react-is/",\
+        "packageDependencies": [\
+          ["react-is", "npm:16.13.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -3894,6 +4015,15 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["thenify", "npm:3.3.1"],\
           ["thenify-all", "npm:1.6.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["tiny-warning", [\
+      ["npm:1.0.3", {\
+        "packageLocation": "../../../Users/binam/AppData/Local/Yarn/Berry/cache/tiny-warning-npm-1.0.3-750b7a07c4-10c0.zip/node_modules/tiny-warning/",\
+        "packageDependencies": [\
+          ["tiny-warning", "npm:1.0.3"]\
         ],\
         "linkType": "HARD"\
       }]\

@@ -1,22 +1,17 @@
-import Contact from './components/Contact'
-import Footer from './components/Footer'
-import Work from './components/Work'
-import Services from './components/Services'
-import About from './components/About'
-import Header from './components/Header'
-import Navbar from './components/Navbar'
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Login from './pages/Login'   
+import Applayout from './layout/App-layout'
 import LenisScroll from './components/LenisScroll'
 
 export default function App() {
     return (
         <>
-            <Navbar />
-            <Header />
-            <About />
-            <Services />
-            <Work />
-            <Contact />
-            <Footer />
+            <LenisScroll />
+            <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/" element={<Applayout />} />
+            </Routes>
         </>
     )
 }

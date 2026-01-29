@@ -18,13 +18,13 @@ export default function About() {
             name: 'Education',
             icon1: './assets/edu-icon.png',
             icon2: './assets/edu-icon-dark.png',
-            description: 'B.Tech in Computer Science',
+            description: 'Bachelor in Information Technology',
         },
         {
             name: 'Projects',
             icon1: './assets/project-icon.png',
             icon2: './assets/project-icon-dark.png',
-            description: 'Built more than 5 projects',
+            description: 'Built more than 4 projects: websites',
         },
     ];
     return (
