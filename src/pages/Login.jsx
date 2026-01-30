@@ -33,7 +33,7 @@ export default function Login() {
         navigate("/dashboard");
       }
     } catch (err) {
-      const message = err.response?.data?.message || "Invalid credentials. Try 'emilys' / 'emilyspass'";
+      const message = err.response?.data?.message || "Invalid credentials. '";
       setError(message);
     } finally {
       setSubmitting(false);
@@ -61,7 +61,7 @@ export default function Login() {
                 </div>
               )}
 
-              {/* Username Field */}
+            
               <div className="space-y-1">
                 <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 ml-1">Username</label>
                 <input
@@ -80,7 +80,7 @@ export default function Login() {
                 {errors.username && touched.username && <p className="text-xs text-red-500 mt-1 ml-1">{errors.username}</p>}
               </div>
 
-              {/* Password Field */}
+      
               <div className="space-y-1">
                 <label className="text-sm font-semibold text-gray-700 dark:text-gray-300 ml-1">Password</label>
                 <div className="relative">
