@@ -1,4 +1,4 @@
-import Footer from './Footer';
+import Footer from '../portfolio/Footer';
 export default function About() {
     const tools = [
         { name: 'vscode', icon: './assets/vscode.png', },

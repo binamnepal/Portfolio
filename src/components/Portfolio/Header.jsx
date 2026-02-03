@@ -8,8 +8,8 @@ export default function Header() {
             </h3>
             <h1 className="text-3xl sm:text-6xl lg:text-[66px] font-Ovo">frontend web developer based in Nepal.</h1>
             <p className="max-w-2xl mx-auto font-Ovo">I build things for the web.
-Based in Kathmandu, I am a Frontend Developer who bridges the gap between design and engineering.
- I focus on crafting fast, responsive, and aesthetically pleasing interfaces that keep users engaged.</p>
+                Based in Kathmandu, I am a Frontend Developer who bridges the gap between design and engineering.
+                I focus on crafting fast, responsive, and aesthetically pleasing interfaces that keep users engaged.</p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
                 <a href="#contact"

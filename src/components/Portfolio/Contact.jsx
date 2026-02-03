@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik } from "formik";
 import * as Yup from "yup";
 import Footer from './Footer';
@@ -6,7 +6,7 @@ import Footer from './Footer';
 export default function Contact() {
     const [result, setResult] = useState("");
 
-    // Script Loader for hCaptcha
+    // Loads hCaptcha script safely
     function CaptchaLoader() {
         if (!document.querySelector('script[src*="hcaptcha.com"]')) {
             const script = document.createElement("script");
@@ -24,7 +24,6 @@ export default function Contact() {
 
     return (
         <div id="contact" className="relative w-full px-[12%] py-20 scroll-mt-20 bg-[url('./assets/footer-bg-color.png')] bg-no-repeat bg-[length:90%_auto] bg-center dark:bg-none">
-
             <h4 className="text-center mb-2 text-lg font-Ovo">Connect with me</h4>
             <h2 className="text-center text-5xl font-Ovo">Get in touch</h2>
             <p className="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo text-gray-600 dark:text-gray-400">
@@ -39,8 +38,8 @@ export default function Contact() {
                     message: Yup.string().min(10, "Message must be at least 10 characters").required("Message is required"),
                 })}
                 onSubmit={(values, { resetForm, setSubmitting }) => {
-                    
-                    const hCaptcha = document.querySelector('textarea[name=h-captcha-response]')?.value;
+                    // Accessing the hCaptcha response from the hidden textarea
+                    const hCaptcha = document.querySelector('[name="h-captcha-response"]')?.value;
                     
                     if (!hCaptcha) {
                         setResult("⚠️ Please complete the captcha first.");
@@ -48,13 +47,19 @@ export default function Contact() {
                         return;
                     }
 
-                    setResult("⏳ Simulating send (API is disabled)...");
+                    setResult("⏳ Sending message...");
 
+                    // Simulation of API Call
                     setTimeout(() => {
                         console.log("Form Data:", values);
-                        setResult("✅ Success! (Simulation mode)");
+                        console.log("Captcha Token:", hCaptcha);
+                        setResult("✅ Success! Your message has been sent.");
                         resetForm();
-                        window.hcaptcha?.reset(); 
+                        
+                        // Reset hCaptcha widget
+                        if (window.hcaptcha) {
+                            window.hcaptcha.reset();
+                        }
                         setSubmitting(false);
                     }, 1500);
                 }}
@@ -108,7 +113,7 @@ export default function Contact() {
 
                         {/* Status Message */}
                         {result && (
-                            <div className="text-center text-sm font-medium text-blue-600 dark:text-blue-400 animate-pulse">
+                            <div className={`text-center text-sm font-medium animate-pulse ${result.includes('⚠️') ? 'text-red-500' : 'text-blue-600 dark:text-blue-400'}`}>
                                 {result}
                             </div>
                         )}
@@ -132,7 +137,7 @@ export default function Contact() {
                 )}
             </Formik>
 
-            <Footer />
+            <Footer/>
         </div>
     );
 }

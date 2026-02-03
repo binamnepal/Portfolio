@@ -1,4 +1,4 @@
-import Fotter from './Footer';
+import Footer from "./Footer";
 export default function Services() {
     const services = [
         {
@@ -42,7 +42,7 @@ export default function Services() {
                     </div>
                 ))}
             </div>
-            <Fotter />
+            <Footer />
         </div>
     )
 }
