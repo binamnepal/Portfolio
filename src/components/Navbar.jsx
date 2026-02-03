@@ -46,7 +46,7 @@ export default function Navbar() {
 
     return (
         <>
-            <div className="fixed top-0 right-0 w-11/12 -z-10 my-10 translate-y-[-80%] dark:hidden">
+            <div className="fixed top-0 right-0 w-11/12 -z-10 my-20 translate-y-[-80%] dark:hidden">
                 <img src="./assets/header-bg-color.png" alt="" className="w-full" />
             </div>
 
@@ -75,7 +75,9 @@ export default function Navbar() {
                         <img src="./assets/arrow-icon.png" alt="" className="w-3 dark:hidden" />
                         <img src="./assets/arrow-icon-dark.png" alt="" className="w-3 hidden dark:block" />
                     </a>
-
+                    <a href='/login' className="hidden md:block px-5 py-1.5 border border-gray-300 hover:bg-slate-100/70 dark:hover:bg-darkHover rounded-full ml-4 font-Ovo dark:border-white/30">
+                        Admin Login
+                    </a>
                     <button className="block md:hidden ml-3" onClick={openMenu}>
                         <img src="./assets/menu-black.png" alt="" className="w-6 dark:hidden" />
                         <img src="./assets/menu-white.png" alt="" className="w-6 hidden dark:block" />
@@ -95,6 +97,7 @@ export default function Navbar() {
                     <li><a href="/services" onClick={closeMenu}>Services</a></li>
                     <li><a href="/work" onClick={closeMenu}>My Work</a></li>
                     <li><a href="/contact" onClick={closeMenu}>Contact me</a></li>
+                    <li><a href='/login' onClick={closeMenu}>Admin Login</a></li>
                 </ul>
             </nav>
         </>

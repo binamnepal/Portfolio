@@ -24,12 +24,6 @@ export default function Contact() {
 
     return (
         <div id="contact" className="relative w-full px-[12%] py-20 scroll-mt-20 bg-[url('./assets/footer-bg-color.png')] bg-no-repeat bg-[length:90%_auto] bg-center dark:bg-none">
-            
-            
-            <a href="/login" className="absolute top-10 right-[12%] flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-gray-400 hover:text-blue-600 border border-gray-200 px-3 my-7 py-1.5 rounded-full transition-all">
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-                Admin Access
-            </a>
 
             <h4 className="text-center mb-2 text-lg font-Ovo">Connect with me</h4>
             <h2 className="text-center text-5xl font-Ovo">Get in touch</h2>
