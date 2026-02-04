@@ -76,7 +76,7 @@ export default function Navbar() {
                         <img src="./assets/arrow-icon-dark.png" alt="" className="w-3 hidden dark:block" />
                     </a>
                     <a href='/login' className="hidden md:block px-5 py-1.5 border border-gray-300 hover:bg-slate-100/70 dark:hover:bg-darkHover rounded-full ml-4 font-Ovo dark:border-white/30">
-                        Admin Login
+                        Login
                     </a>
                     <button className="block md:hidden ml-3" onClick={openMenu}>
                         <img src="./assets/menu-black.png" alt="" className="w-6 dark:hidden" />
@@ -97,7 +97,7 @@ export default function Navbar() {
                     <li><a href="/services" onClick={closeMenu}>Services</a></li>
                     <li><a href="/work" onClick={closeMenu}>My Work</a></li>
                     <li><a href="/contact" onClick={closeMenu}>Contact me</a></li>
-                    <li><a href='/login' onClick={closeMenu}>Admin Login</a></li>
+                    <li><a href='/login' onClick={closeMenu}>Login</a></li>
                 </ul>
             </nav>
         </>

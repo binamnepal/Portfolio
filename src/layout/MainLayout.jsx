@@ -6,8 +6,7 @@ const MainLayout = () => {
   return (
     <>
       <LenisScroll />
-      <Navbar />
-     
+      <Navbar /> 
       <Outlet />
     </>
   );

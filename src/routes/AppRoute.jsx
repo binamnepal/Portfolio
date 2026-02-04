@@ -1,29 +1,35 @@
 import { Routes, Route } from 'react-router-dom';
-import MainLayout from '../layout/MainLayout'; //
+import MainLayout from '../layout/MainLayout';
 import Applayout from '../layout/App-layout';
 import Contact from '../components/Portfolio/Contact';
 import About from '../components/portfolio/About';
 import Services from '../components/portfolio/Services';
 import Work from '../components/portfolio/Work';
 import Login from '../pages/Login';
-import ProtectedRoute from './ProtectedRoute';
 import { AdminDashboard } from '../components/Dashboard/dashboard';
+import Analytics from '../components/Dashboard/Analytics';
+import ProtectedRoute from './ProtectedRoute';
 
-export default function App() {
+export default function AppRoute() {
     return (
         <Routes>
+         
             <Route element={<MainLayout />}>
                 <Route path="/" element={<Applayout />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/services" element={<Services />} />
                 <Route path="/work" element={<Work />} />
                 <Route path="/contact" element={<Contact />} />
-                 <Route path="/login" element={<Login />} />
+                <Route path="/login" element={<Login />} />
             </Route>
 
-                
+     
             <Route element={<ProtectedRoute />}>
-                <Route path="/dashboard" element={<AdminDashboard />} />
+              
+                <Route path="/dashboard" element={<AdminDashboard />}>
+                  
+                    <Route path="analytics" element={<Analytics />} />
+                </Route>
             </Route>
         </Routes>
     );
