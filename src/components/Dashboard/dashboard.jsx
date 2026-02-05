@@ -23,7 +23,7 @@ export const AdminDashboard = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedMessage, setSelectedMessage] = useState(null);
-  const [showNotifications, setShowNotifications] = useState(false); // Toggle for Bell
+
 
   useEffect(() => {
     const savedMessages = localStorage.getItem("contact_messages");
@@ -38,12 +38,10 @@ export const AdminDashboard = () => {
     }
   }, []);
 
-  // Central logic to handle opening a message (from table OR notification)
   const handleOpenMessage = (msg) => {
     setSelectedMessage(msg);
-    setShowNotifications(false); // Close bell dropdown if open
-    
-    // If we are on Analytics page, move to Inbox to show the message
+    setShowNotifications(false); 
+   
     if (location.pathname.includes('analytics')) {
       navigate('/dashboard');
     }
@@ -112,44 +110,7 @@ export const AdminDashboard = () => {
                 <Search size={18} className="text-slate-500" />
                 <input type="text" placeholder="Search inbox..." className="bg-transparent border-none focus:ring-0 text-sm w-full ml-2" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
             </div>
-
-            <div className="flex items-center gap-4 relative">
-                {/* NOTIFICATION BELL & DROPDOWN */}
-                <button 
-                  onClick={() => setShowNotifications(!showNotifications)}
-                  className="relative p-2.5 bg-slate-900 border border-slate-800 rounded-xl hover:bg-slate-800 transition-all"
-                >
-                  <Bell size={22} className={unreadCount > 0 ? "text-blue-400 animate-pulse" : "text-slate-400"} />
-                  {unreadCount > 0 && <span className="absolute -top-1 -right-1 w-5 h-5 bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-[#0a0014]">{unreadCount}</span>}
-                </button>
-
-                {showNotifications && (
-                  <div className="absolute right-0 top-full mt-4 w-80 bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-4 z-50 animate-in fade-in zoom-in duration-200">
-                    <div className="flex justify-between items-center mb-4 border-b border-slate-800 pb-2">
-                      <h3 className="text-[10px] font-black text-slate-500 uppercase">Recent Messages</h3>
-                      <button onClick={markAllAsRead} className="text-[10px] text-blue-400 hover:underline">Mark all read</button>
-                    </div>
-                    <div className="space-y-2 max-h-60 overflow-y-auto custom-scrollbar">
-                      {messages.filter(m => !m.read).length === 0 ? (
-                        <p className="text-center text-slate-600 text-xs py-4 italic">No new messages</p>
-                      ) : (
-                        messages.filter(m => !m.read).map(msg => (
-                          <div 
-                            key={msg.id} 
-                            onClick={() => handleOpenMessage(msg)}
-                            className="p-3 bg-slate-800/40 rounded-xl cursor-pointer hover:bg-blue-600/10 border border-transparent hover:border-blue-500/30 transition-all group"
-                          >
-                            <div className="flex justify-between items-start">
-                              <p className="text-xs font-bold text-white truncate">{msg.name}</p>
-                              <ExternalLink size={12} className="text-slate-600 group-hover:text-blue-400" />
-                            </div>
-                            <p className="text-[10px] text-slate-400 line-clamp-1 italic">"{msg.message}"</p>
-                          </div>
-                        ))
-                      )}
-                    </div>
-                  </div>
-                )}
+            <div className="flex items-center gap-6">
                 
                 <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-500 to-purple-600 p-[2px]"><div className="w-full h-full rounded-full bg-slate-950 flex items-center justify-center font-bold text-xs">AD</div></div>
             </div>

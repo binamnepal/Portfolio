@@ -1,7 +1,4 @@
-import { 
-  AreaChart, Area, XAxis, YAxis, CartesianGrid, 
-  Tooltip, ResponsiveContainer, BarChart, Bar, Cell, PieChart, Pie
-} from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie} from 'recharts';
 import { TrendingUp, Users, Eye, MousePointerClick, Globe, ArrowUpRight, ArrowDownRight, Activity } from 'lucide-react';
 
 const data = [
@@ -46,16 +43,9 @@ const Analytics = () => {
           <h1 className="text-4xl font-black text-white tracking-tight">Analytics Overview</h1>
           <p className="text-slate-400 mt-1">Real-time performance tracking for your portfolio.</p>
         </div>
-        <div className="flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/20 px-4 py-2 rounded-full">
-          <span className="relative flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-          </span>
-          <span className="text-emerald-400 text-sm font-bold tracking-wide uppercase">Live: 14 Active Visitors</span>
-        </div>
       </div>
 
-      {/* Main Stats Grid */}
+    
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <AnalyticsCard title="Total Impressions" value="12,840" icon={Eye} color="bg-blue-600/20 text-blue-400" trend="12.5%" isPositive={true} />
         <AnalyticsCard title="Unique Talents" value="3,210" icon={Users} color="bg-purple-600/20 text-purple-400" trend="8.2%" isPositive={true} />
@@ -121,29 +111,7 @@ const Analytics = () => {
           </div>
         </div>
       </div>
-
-      {/* Bottom Insights - New Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 pb-10">
-        <div className="bg-slate-900/50 border border-slate-800 p-6 rounded-3xl flex items-center gap-6">
-          <div className="bg-blue-500/20 p-4 rounded-2xl">
-            <Globe className="text-blue-400" size={32} />
-          </div>
-          <div>
-            <h4 className="font-bold text-lg">Global Reach</h4>
-            <p className="text-slate-400 text-sm">Most of your traffic is coming from **Nepal**, **USA**, and **India**.</p>
-          </div>
-        </div>
-        <div className="bg-slate-900/50 border border-slate-800 p-6 rounded-3xl flex items-center gap-6">
-          <div className="bg-purple-500/20 p-4 rounded-2xl">
-            <TrendingUp className="text-purple-400" size={32} />
-          </div>
-          <div>
-            <h4 className="font-bold text-lg">Top Project</h4>
-            <p className="text-slate-400 text-sm">Your **"E-Commerce Redesign"** project saw a 40% jump in clicks this month.</p>
-          </div>
-        </div>
       </div>
-    </div>
   );
 };
 
