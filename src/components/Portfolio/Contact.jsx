@@ -6,7 +6,7 @@ import Footer from './Footer';
 export default function Contact() {
     const [result, setResult] = useState("");
 
-    // Loads hCaptcha script safely
+   
     function CaptchaLoader() {
         if (!document.querySelector('script[src*="hcaptcha.com"]')) {
             const script = document.createElement("script");
@@ -38,7 +38,6 @@ export default function Contact() {
                     message: Yup.string().min(10, "Message must be at least 10 characters").required("Message is required"),
                 })}
                 onSubmit={(values, { resetForm, setSubmitting }) => {
-                    // Accessing the hCaptcha response from the hidden textarea
                     const hCaptcha = document.querySelector('[name="h-captcha-response"]')?.value;
                     
                     if (!hCaptcha) {
@@ -49,25 +48,42 @@ export default function Contact() {
 
                     setResult("⏳ Sending message...");
 
-                    // Simulation of API Call
                     setTimeout(() => {
-                        console.log("Form Data:", values);
-                        console.log("Captcha Token:", hCaptcha);
-                        setResult("✅ Success! Your message has been sent.");
-                        resetForm();
-                        
-                        // Reset hCaptcha widget
-                        if (window.hcaptcha) {
-                            window.hcaptcha.reset();
+                        try {
+                          
+                            const newMessage = {
+                                id: Date.now(),
+                                ...values,
+                                date: new Date().toLocaleString(),
+                            };
+
+                           
+                            const existingData = localStorage.getItem("contact_messages");
+                            const messages = existingData ? JSON.parse(existingData) : [];
+
+                            messages.unshift(newMessage);
+
+                           
+                            localStorage.setItem("contact_messages", JSON.stringify(messages));
+
+                            setResult("✅ Success! Your message has been sent.");
+                            resetForm();
+                            
+                            if (window.hcaptcha) {
+                                window.hcaptcha.reset();
+                            }
+                        } catch (error) {
+                            console.error("Local Storage Error:", error);
+                            setResult("❌ Error saving message locally.");
+                        } finally {
+                            setSubmitting(false);
                         }
-                        setSubmitting(false);
                     }, 1500);
                 }}
             >
                 {({ values, touched, errors, isSubmitting, handleChange, handleBlur, handleSubmit, handleReset }) => (
                     <form onSubmit={handleSubmit} className="max-w-md mx-auto p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 space-y-6">
                         
-                        {/* Name */}
                         <div>
                             <label htmlFor="name" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Name</label>
                             <input
@@ -80,7 +96,7 @@ export default function Contact() {
                             {errors.name && touched.name && <div className="mt-1 text-xs text-red-500">{errors.name}</div>}
                         </div>
 
-                        {/* Email */}
+                      
                         <div>
                             <label htmlFor="email" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Email</label>
                             <input
@@ -93,7 +109,6 @@ export default function Contact() {
                             {errors.email && touched.email && <div className="mt-1 text-xs text-red-500">{errors.email}</div>}
                         </div>
 
-                        {/* Message */}
                         <div>
                             <label htmlFor="message" className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Message</label>
                             <textarea
@@ -106,19 +121,17 @@ export default function Contact() {
                             {errors.message && touched.message && <div className="mt-1 text-xs text-red-500">{errors.message}</div>}
                         </div>
 
-                        {/* hCaptcha Widget */}
                         <div className="flex justify-center">
                             <div className="h-captcha" data-sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"></div>
                         </div>
-
-                        {/* Status Message */}
+ 
                         {result && (
-                            <div className={`text-center text-sm font-medium animate-pulse ${result.includes('⚠️') ? 'text-red-500' : 'text-blue-600 dark:text-blue-400'}`}>
+                            <div className={`text-center text-sm font-medium animate-pulse ${result.includes('⚠️') || result.includes('❌') ? 'text-red-500' : 'text-blue-600 dark:text-blue-400'}`}>
                                 {result}
                             </div>
                         )}
 
-                        {/* Actions */}
+                        
                         <div className="flex gap-4 pt-2">
                             <button
                                 type="button" onClick={handleReset} disabled={isSubmitting}

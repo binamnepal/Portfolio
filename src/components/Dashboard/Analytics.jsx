@@ -36,7 +36,7 @@ const Analytics = () => {
         <p className="text-slate-400">Website performance metrics</p>
       </header>
 
-      {/* Stats Grid */}
+    
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <AnalyticsCard title="Total Views" value="4.2k" icon={Eye} color="bg-blue-500/10 text-blue-500" />
         <AnalyticsCard title="Visitors" value="1.8k" icon={Users} color="bg-purple-500/10 text-purple-500" />

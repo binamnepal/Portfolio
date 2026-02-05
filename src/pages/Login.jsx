@@ -30,7 +30,7 @@ export default function Login() {
         localStorage.setItem("adminToken", response.data.accessToken);
         localStorage.setItem("isAdmin", "true");
         localStorage.setItem("userImage", response.data.image);                                         
-        navigate("/dashboard");
+        navigate("/dashboard ");
       }
     } catch (err) {
       const message = err.response?.data?.message || "Invalid credentials. '";
