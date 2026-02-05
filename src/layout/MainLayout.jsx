@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import Navbar from '../components/portfolio/Navbar';
-import LenisScroll from '../components/portfolio/LenisScroll';
+import Navbar from '../components/Homepage/Navbar';
+import LenisScroll from '../components/Homepage/LenisScroll';
 
 const MainLayout = () => {
   return (

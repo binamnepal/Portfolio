@@ -1,10 +1,10 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from '../layout/MainLayout';
 import Applayout from '../layout/App-layout';
-import Contact from '../components/Portfolio/Contact';
-import About from '../components/Portfolio/About';  
-import Services from '../components/Portfolio/Services';
-import Work from '../components/Portfolio/Work';
+import Contact from '../components/Homepage/Contact';
+import About from '../components/Homepage/About';  
+import Services from '../components/Homepage/Services';
+import Work from '../components/Homepage/Work';
 import Login from '../pages/Login';
 import { AdminDashboard } from '../components/Dashboard/dashboard';
 import Analytics from '../components/Dashboard/Analytics';

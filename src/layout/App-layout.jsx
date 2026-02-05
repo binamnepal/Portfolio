@@ -1,5 +1,5 @@
-import Footer from "../components/Portfolio/Footerpage";
-import Header from "../components/Portfolio/Header";
+import Footer from "../components/Homepage/Footerpage";
+import Header from "../components/Homepage/Header";
 const Applayout = () => {
     return (
         <>
