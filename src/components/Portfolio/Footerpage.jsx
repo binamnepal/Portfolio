@@ -1,4 +1,4 @@
-export default function Footer() {
+export default function Footerpage() {
     return (
         <div className="mt-20">
             <div className="text-center">

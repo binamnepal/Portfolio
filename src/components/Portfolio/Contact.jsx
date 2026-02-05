@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Formik } from "formik";
 import * as Yup from "yup";
-import Footer from './Footer';
+import Footer from './Footerpage';
 
 export default function Contact() {
     const [result, setResult] = useState("");

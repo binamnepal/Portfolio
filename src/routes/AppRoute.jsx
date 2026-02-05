@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from '../layout/MainLayout';
 import Applayout from '../layout/App-layout';
 import Contact from '../components/Portfolio/Contact';
-import About from '../components/portfolio/About';
+import About from '../components/portfolio/About';  
 import Services from '../components/portfolio/Services';
 import Work from '../components/portfolio/Work';
 import Login from '../pages/Login';

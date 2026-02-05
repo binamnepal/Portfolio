@@ -1,4 +1,4 @@
-import Footer from "./Footer";
+import Footer from "./Footerpage";
 export default function Services() {
     const services = [
         {
