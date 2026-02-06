@@ -1,10 +1,15 @@
-import AppRoute from './routes/AppRoute.jsx'
-import {Routes} from 'react-router-dom'
-import {BrowserRouter} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './utils/store.js';  
+import AppRoute from './routes/AppRoute.jsx';
+
 export default function App() {
     return (
-        <BrowserRouter>
-          <AppRoute />
-        </BrowserRouter>
+        
+        <Provider store={store}> 
+            <BrowserRouter>
+                <AppRoute />
+            </BrowserRouter>
+        </Provider>
     );
 }

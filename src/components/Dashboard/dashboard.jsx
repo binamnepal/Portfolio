@@ -85,7 +85,6 @@ export const AdminDashboard = () => {
   return (
     <div className="flex h-screen bg-[#0a0014] text-slate-100 font-sans overflow-hidden">
       
-      {/* SIDEBAR */}
       {isSidebarOpen && <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden" onClick={() => setSidebarOpen(false)} />}
       <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-72 bg-slate-900/80 backdrop-blur-xl border-r border-slate-800 p-6 flex flex-col transition-transform duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
         <div className="flex items-center justify-between mb-10">
@@ -102,7 +101,7 @@ export const AdminDashboard = () => {
       </aside>
 
       <main className="flex-1 overflow-y-auto relative">
-        {/* HEADER */}
+     
         <header className="sticky top-0 z-40 flex items-center justify-between p-4 lg:p-8 bg-[#0a0014]/80 backdrop-blur-md border-b border-slate-800/50">
             <button className="lg:hidden p-2 bg-slate-800 rounded-lg" onClick={() => setSidebarOpen(true)}><Menu size={20}/></button>
             
@@ -121,10 +120,9 @@ export const AdminDashboard = () => {
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
               <div className="mb-8">
                 <h1 className="text-4xl font-black text-white mb-2">Inbox</h1>
-                <p className="text-slate-400">Manage incoming requests from your <strong>RTX 4050</strong> dashboard.</p>
+                <p className="text-slate-400">Manage incoming requests from your dashboard.</p>
               </div>
 
-              {/* MESSAGE PREVIEW (OPENED FROM TABLE OR NOTIFICATION) */}
               {selectedMessage && (
                 <div className="mb-8 animate-in slide-in-from-top duration-500">
                    <div className="bg-slate-900 border border-blue-500/30 rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/10">
@@ -150,14 +148,13 @@ export const AdminDashboard = () => {
                 </div>
               )}
 
-              {/* STATS */}
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 mb-10">
                 <StatCard icon={<MessageSquare className="text-blue-400" />} label="Total" value={messages.length} />
                 <StatCard icon={<Clock className="text-yellow-400" />} label="Unread" value={unreadCount} />
                 <StatCard icon={<CheckCircle className="text-green-400" />} label="Performance" value="Stable" />
               </div>
 
-              {/* INBOX TABLE */}
+        
               <div className="bg-slate-900/50 border border-slate-800 rounded-3xl overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full text-left">

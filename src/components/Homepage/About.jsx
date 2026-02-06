@@ -31,7 +31,7 @@ export default function About() {
 
     return (
         <div id="about" className="w-full px-[12%] py-20 scroll-mt-20 overflow-hidden">
-            {/* Heading Section */}
+            
             <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -45,7 +45,7 @@ export default function About() {
             </motion.div>
 
             <div className="flex w-full flex-col lg:flex-row items-center gap-20 my-10">
-                {/* Image Section */}
+            
                 <motion.div 
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -61,7 +61,6 @@ export default function About() {
                     </div>
                 </motion.div>
 
-                {/* Text & Cards Section */}
                 <div className="flex-1">
                     <motion.p 
                         initial={{ opacity: 0, x: 20 }}
@@ -91,7 +90,7 @@ export default function About() {
                         ))}
                     </ul>
 
-                    {/* Tools Section */}
+                 
                     <div className="mt-12">
                         <h4 className="my-6 text-gray-700 font-Ovo dark:text-white/80 font-semibold tracking-wide uppercase text-xs">Tools I use</h4>
                         <ul className="flex items-center gap-3 sm:gap-5">
