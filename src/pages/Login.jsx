@@ -10,7 +10,6 @@ export default function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
-  // Connect to Redux state
   const { loading, error } = useSelector((state) => state.auth);
 
   const initialValues = { username: '', password: '' };
@@ -21,10 +20,10 @@ export default function Login() {
   });
 
   const handleLogin = async (values, { setSubmitting }) => {
-    // Dispatch the Redux Thunk
+   
     const resultAction = await dispatch(loginUser(values));
     
-    // Unwrap the result to see if it succeeded
+   
     if (loginUser.fulfilled.match(resultAction)) {
       navigate("/dashboard");
     }
@@ -34,7 +33,6 @@ export default function Login() {
   return (
     <section className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-[#0a0a0a] text-slate-900 dark:text-white p-6 relative overflow-hidden font-Ovo transition-colors duration-500">
       
-      {/* Background Orbs */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-200/50 dark:bg-purple-900/20 rounded-full blur-[120px]"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-blue-200/50 dark:bg-blue-900/20 rounded-full blur-[120px]"></div>
 
@@ -55,8 +53,7 @@ export default function Login() {
           >
             {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
               <form onSubmit={handleSubmit} className="space-y-6">
-                
-                {/* Error message from Redux */}
+              
                 {error && (
                   <div className="bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 p-3 rounded-xl text-xs text-center">
                     {error}
@@ -71,7 +68,7 @@ export default function Login() {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values.username}
-                    placeholder="emilys" // DummyJSON example user
+                    placeholder="emilys" 
                     className="w-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 p-4 rounded-2xl outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/10 transition-all text-sm dark:text-white"
                   />
                   {errors.username && touched.username && <p className="text-[10px] text-purple-600 dark:text-purple-400 ml-1">{errors.username}</p>}

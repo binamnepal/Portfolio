@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
+    "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/postcss": "^4.1.18",
     "axios": "^1.13.4",
     "formik": "^2.4.9",

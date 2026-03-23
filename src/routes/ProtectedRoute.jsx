@@ -1,9 +1,11 @@
 import { Navigate, Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const ProtectedRoute = () => {
-    const token = localStorage.getItem("adminToken");
+    const { token } = useSelector((state) => state.auth);
+    const backupToken = localStorage.getItem("adminToken");
     
-    return token ? <Outlet /> : <Navigate to="/login" replace />;
+    return (token || backupToken) ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
-export default ProtectedRoute; 
+export default ProtectedRoute;

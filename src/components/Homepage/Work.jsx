@@ -3,16 +3,16 @@ import Footer from './Footerpage';
 export default function Work() {
     const projects = [
         {
-            name: 'Frontend Project',
+            name: 'pasupati planers',
             bgImage: './assets/work-1.png',
             description: 'Web Design',
-            link: '',
+            link: 'https://event-reservation-lake.vercel.app/',
         },
         {
             name: 'UI/UX Designing',
             bgImage: './assets/work-4.png',
             description: 'UI/UX Design',
-            link: '',
+            link: 'https://ui-ux-design.vercel.app/',
         }
     ];
 

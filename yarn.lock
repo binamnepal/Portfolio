@@ -892,6 +892,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@studio-freight/lenis@npm:^1.0.42":
+  version: 1.0.42
+  resolution: "@studio-freight/lenis@npm:1.0.42"
+  checksum: 10c0/edaaa6692a2e365ef6a0ed5b0a6d5f0bf32370fd4f53cd6aeff4cb42e92496127453dc348d4e1e5206425990c15d07c188fdf86f454995e342194c41f2ca270a
+  languageName: node
+  linkType: hard
+
 "@tailwindcss/node@npm:4.1.18":
   version: 4.1.18
   resolution: "@tailwindcss/node@npm:4.1.18"
@@ -3419,6 +3426,7 @@ __metadata:
   dependencies:
     "@eslint/js": "npm:^9.39.1"
     "@reduxjs/toolkit": "npm:^2.11.2"
+    "@studio-freight/lenis": "npm:^1.0.42"
     "@tailwindcss/postcss": "npm:^4.1.18"
     "@types/react": "npm:^19.2.5"
     "@types/react-dom": "npm:^19.2.3"

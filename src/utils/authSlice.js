@@ -6,11 +6,9 @@ export const loginUser = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await axios.post('https://dummyjson.com/auth/login', credentials);
-      
+      // Consistent key naming: adminToken
       localStorage.setItem('adminToken', response.data.accessToken);
       localStorage.setItem('userImage', response.data.image);
-      localStorage.setItem('isAdmin', 'true');
-      
       return response.data; 
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Login Failed');
@@ -29,7 +27,7 @@ const authSlice = createSlice({
   },
   reducers: {
     logout: (state) => {
-      localStorage.clear();
+      localStorage.clear(); // Clears all auth data
       state.user = null;
       state.token = null;
       state.image = null;

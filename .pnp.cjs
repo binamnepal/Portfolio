@@ -30,6 +30,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@eslint/js", "npm:9.39.2"],\
           ["@reduxjs/toolkit", "virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:2.11.2"],\
+          ["@studio-freight/lenis", "npm:1.0.42"],\
           ["@tailwindcss/postcss", "npm:4.1.18"],\
           ["@types/react", "npm:19.2.10"],\
           ["@types/react-dom", "virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:19.2.3"],\
@@ -1193,6 +1194,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../Users/binam/AppData/Local/Yarn/Berry/cache/@standard-schema-utils-npm-0.3.0-37537c524c-10c0.zip/node_modules/@standard-schema/utils/",\
         "packageDependencies": [\
           ["@standard-schema/utils", "npm:0.3.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@studio-freight/lenis", [\
+      ["npm:1.0.42", {\
+        "packageLocation": "../../../Users/binam/AppData/Local/Yarn/Berry/cache/@studio-freight-lenis-npm-1.0.42-01017a5245-10c0.zip/node_modules/@studio-freight/lenis/",\
+        "packageDependencies": [\
+          ["@studio-freight/lenis", "npm:1.0.42"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4161,6 +4171,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@eslint/js", "npm:9.39.2"],\
           ["@reduxjs/toolkit", "virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:2.11.2"],\
+          ["@studio-freight/lenis", "npm:1.0.42"],\
           ["@tailwindcss/postcss", "npm:4.1.18"],\
           ["@types/react", "npm:19.2.10"],\
           ["@types/react-dom", "virtual:d3ecc0fca530f580c333f357ee3fdf4f52524dd64cb0c8b5fc9c67d11520ef5342066bc985ed65b552d73d444a4cf5fd8d529b6b310757e7414ec03315362b26#npm:19.2.3"],\
