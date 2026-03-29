@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-
 export default function Navbar() {
     const sideMenuRef = useRef();
     const [isScroll, setIsScroll] = useState(false);
@@ -39,7 +38,7 @@ export default function Navbar() {
 
     return (
         <>
-            {/* Background blur/color effect */}
+           
             <div className="fixed top-0 right-0 w-11/12 -z-10 my-20 translate-y-[-80%] dark:hidden">
                 <img src="./assets/header-bg-color.png" alt="" className="w-full" />
             </div>
@@ -65,13 +64,7 @@ export default function Navbar() {
                         <img src="./assets/moon_icon.png" alt="" className="w-5 dark:hidden" />
                         <img src="./assets/sun_icon.png" alt="" className="w-5 hidden dark:block" />
                     </button>
-
-                    {/* Login Link (Desktop) */}
-                    <a href="/login" className="hidden md:block font-Ovo text-gray-700 dark:text-white hover:text-[#b820e6] transition duration-300 px-4">
-                        Login
-                    </a>
-
-                    {/* Contact Button */}
+                 
                     <a href="/contact" className="hidden lg:flex items-center gap-3 px-8 py-2 border border-gray-300 hover:bg-slate-100/70 dark:hover:bg-darkHover rounded-full ml-2 font-Ovo dark:border-white/30 transition">
                         Contact
                         <img src="./assets/arrow-icon.png" alt="" className="w-3 dark:hidden" />
@@ -99,16 +92,11 @@ export default function Navbar() {
                         { label: 'Services', link: '/services' },
                         { label: 'My Work', link: '/work' },
                         { label: 'Contact me', link: '/contact' },
-                        { label: 'Login', link: '/login' }
-                    ].map((item, idx) => (
-                        <li key={idx}>
-                            <a 
-                                href={item.link} 
-                                onClick={closeMenu} 
-                                className={`text-lg hover:text-[#b820e6] transition-all ${item.label === 'Login' ? 'font-bold text-[#b820e6] mt-4 block border-t border-gray-200 dark:border-white/10 pt-4' : ''}`}
-                            >
-                                {item.label}
-                            </a>
+                        
+                    ]
+                    .map((item, index) => (
+                        <li key={index} className="text-lg font-medium hover:text-[#b820e6] dark:hover:text-gray-300 transition">       
+                            <a href={item.link} onClick={closeMenu}>{item.label}</a>
                         </li>
                     ))}
                 </ul>

@@ -23,7 +23,7 @@ export default function AppRoute() {
                 <Route path="/contact" element={<Contact />} />
                 
                 <Route element={<PublicRoute />}>
-                    <Route path="/login" element={<Login />} />
+
                 </Route>
             </Route>
 
