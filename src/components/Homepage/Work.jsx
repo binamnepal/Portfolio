@@ -1,15 +1,16 @@
 import { motion } from 'framer-motion';
 import Footer from './Footerpage';
+
 export default function Work() {
     const projects = [
         {
-            name: 'pasupati planers',
+            name: 'pasupati planers(React)',
             bgImage: './assets/work-1.png',
             description: 'Web Design',
             link: 'https://event-reservation-lake.vercel.app/',
         },
         {
-            name: 'UI/UX Designing',
+            name: 'eventu(HTML-CSS,Flask)',
             bgImage: './assets/work-4.png',
             description: 'UI/UX Design',
             link: '',
@@ -52,7 +53,6 @@ export default function Work() {
                 my expertise in front-end development and digital craftsmanship.
             </motion.p>
 
-            {/* Changed from grid-cols-4 to flex justify-center */}
             <div className="flex flex-wrap justify-center gap-5 my-10 dark:text-black">
                 {projects.map((project, index) => (
                     <motion.div 
@@ -61,6 +61,7 @@ export default function Work() {
                         transition={{ duration: 0.3 }}
                         className="w-full sm:w-[45%] lg:w-[350px] aspect-square bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group overflow-hidden" 
                         style={{ backgroundImage: `url(${project.bgImage})` }}
+                        onClick={() => project.link && window.open(project.link, '_blank')}
                     >
                         <div className="absolute inset-0 bg-black/5 group-hover:bg-black/20 transition-all duration-500"></div>
 
@@ -69,7 +70,7 @@ export default function Work() {
                                 <h2 className="font-semibold text-gray-800">{project.name}</h2>
                                 <p className="text-xs text-gray-600">{project.description}</p>
                             </div>
-                            <div className="border rounded-full border-black w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition-all duration-300">
+                            <div className={`border rounded-full border-black w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] transition-all duration-300 ${project.link ? 'group-hover:bg-lime-300' : 'opacity-40 cursor-not-allowed'}`}>
                                 <img src="./assets/send-icon.png" alt="view project" className="w-4" />
                             </div>
                         </div>
@@ -89,7 +90,7 @@ export default function Work() {
                 <img src="./assets/right-arrow-bold-dark.png" alt="" className="w-4 hidden dark:block" />
             </motion.a>
             
-        <Footer />
+            <Footer />
         </motion.div>
     );
 }
