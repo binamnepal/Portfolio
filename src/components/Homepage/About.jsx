@@ -68,7 +68,7 @@ export default function About() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="mb-10 max-w-2xl font-Ovo text-gray-600 dark:text-gray-300 leading-relaxed"
                     >
-                        Dedicated Frontend Developer from Kathmandu, focused on mastering React and modern web architecture. 
+                        Dedicated Web Developer from Kathmandu, focused on mastering React and modern web architecture. 
                         I bridge the gap between early-career passion and professional-grade execution, 
                         building scalable, high-quality interfaces with a deep commitment to clean code.
                     </motion.p>

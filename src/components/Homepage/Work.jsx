@@ -12,7 +12,7 @@ export default function Work() {
             name: 'UI/UX Designing',
             bgImage: './assets/work-4.png',
             description: 'UI/UX Design',
-            link: 'https://ui-ux-design.vercel.app/',
+            link: '',
         }
     ];
 
