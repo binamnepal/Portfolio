@@ -1,106 +1,152 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
 export default function Navbar() {
-    const sideMenuRef = useRef();
+
     const [isScroll, setIsScroll] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [theme, setTheme] = useState('light');
 
-    const openMenu = () => {
-        sideMenuRef.current.style.transform = 'translateX(-16rem)';
-    }
-    const closeMenu = () => {
-        sideMenuRef.current.style.transform = 'translateX(16rem)';
-    }
-
-    const toggleTheme = () => {
-        document.documentElement.classList.toggle('dark');
-        localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-    }
-
+    // Scroll effect
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 50) {
-                setIsScroll(true);
-            } else {
-                setIsScroll(false);
-            }
+            setIsScroll(window.scrollY > 50);
         };
 
         window.addEventListener('scroll', handleScroll);
-        
-        // Initial theme check
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Theme init
+    useEffect(() => {
+        const savedTheme = localStorage.theme;
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            document.documentElement.classList.add('dark');
+            setTheme('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            setTheme('light');
+        }
+    }, []);
+
+    const toggleTheme = () => {
+        const newTheme = theme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+        document.documentElement.classList.toggle('dark');
+        localStorage.theme = newTheme;
+    };
+
     return (
         <>
-           
-            <div className="fixed top-0 right-0 w-11/12 -z-10 my-20 translate-y-[-80%] dark:hidden">
-                <img src="./assets/header-bg-color.png" alt="" className="w-full" />
-            </div>
+            {/* Navbar */}
+            <nav className={`fixed top-0 w-full z-50 transition-all duration-300 px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between
+                ${isScroll ? "bg-white/60 backdrop-blur-lg shadow-sm dark:bg-darkTheme/70" : ""}
+            `}>
 
-            <nav className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 transition-all duration-300 ${isScroll ? "bg-white bg-opacity-50 backdrop-blur-lg shadow-sm dark:bg-darkTheme dark:shadow-white/20" : ""}`}>
-
+                {/* Logo */}
                 <a href="/">
-                    <img src="./assets/logo.png" alt="Logo" className="w-28 cursor-pointer mr-14 dark:hidden" />
-                    <img src="./assets/logo_dark.png" alt="Logo" className="w-28 cursor-pointer mr-14 hidden dark:block" />
+                    <img src="./assets/logo.png" className="w-28 dark:hidden" />
+                    <img src="./assets/logo_dark.png" className="w-28 hidden dark:block" />
                 </a>
 
                 {/* Desktop Menu */}
-                <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 font-Ovo transition-all duration-300 ${isScroll ? "" : "bg-white shadow-sm bg-opacity-50 dark:border dark:border-white/30 dark:bg-transparent"}`}>
-                    <li><a className='hover:text-[#b820e6] dark:hover:text-gray-300 transition' href="/">Home</a></li>
-                    <li><a className='hover:text-[#b820e6] dark:hover:text-gray-300 transition' href="/about">About</a></li>
-                    <li><a className='hover:text-[#b820e6] dark:hover:text-gray-300 transition' href="/services">Services</a></li>
-                    <li><a className='hover:text-[#b820e6] dark:hover:text-gray-300 transition' href="/work">My Work</a></li>
-                </ul>
-
-                <div className="flex items-center gap-4">
-                    {/* Theme Toggle */}
-                    <button onClick={toggleTheme} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition">
-                        <img src="./assets/moon_icon.png" alt="" className="w-5 dark:hidden" />
-                        <img src="./assets/sun_icon.png" alt="" className="w-5 hidden dark:block" />
-                    </button>
-                 
-                    <a href="/contact" className="hidden lg:flex items-center gap-3 px-8 py-2 border border-gray-300 hover:bg-slate-100/70 dark:hover:bg-darkHover rounded-full ml-2 font-Ovo dark:border-white/30 transition">
-                        Contact
-                        <img src="./assets/arrow-icon.png" alt="" className="w-3 dark:hidden" />
-                        <img src="./assets/arrow-icon-dark.png" alt="" className="w-3 hidden dark:block" />
-                    </a>
-                    
-                    {/* Mobile Menu Toggle */}
-                    <button className="block md:hidden ml-3" onClick={openMenu}>
-                        <img src="./assets/menu-black.png" alt="" className="w-6 dark:hidden" />
-                        <img src="./assets/menu-white.png" alt="" className="w-6 hidden dark:block" />
-                    </button>
-                </div>
-
-                {/* Mobile Menu */}
-                <ul ref={sideMenuRef} className="flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition-transform duration-500 font-Ovo dark:bg-darkHover dark:text-white shadow-2xl">
-                    
-                    <div className="absolute right-6 top-6" onClick={closeMenu}>
-                        <img src="./assets/close-black.png" alt="" className="w-5 cursor-pointer dark:hidden" />
-                        <img src="./assets/close-white.png" alt="" className="w-5 cursor-pointer hidden dark:block" />
-                    </div>
-
+                <ul className={`hidden md:flex items-center gap-8 rounded-full px-10 py-3 font-Ovo transition-all
+                    ${isScroll ? "" : "bg-white/50 shadow-sm dark:bg-transparent dark:border dark:border-white/20"}
+                `}>
                     {[
                         { label: 'Home', link: '/' },
-                        { label: 'About me', link: '/about' },
+                        { label: 'About', link: '/about' },
                         { label: 'Services', link: '/services' },
-                        { label: 'My Work', link: '/work' },
-                        { label: 'Contact me', link: '/contact' },
-                        
-                    ]
-                    .map((item, index) => (
-                        <li key={index} className="text-lg font-medium hover:text-[#b820e6] dark:hover:text-gray-300 transition">       
-                            <a href={item.link} onClick={closeMenu}>{item.label}</a>
+                        { label: 'Work', link: '/work' },
+                    ].map(item => (
+                        <li key={item.label}>
+                            <a href={item.link} className="hover:text-purple-500 transition">
+                                {item.label}
+                            </a>
                         </li>
                     ))}
                 </ul>
+
+                {/* Right Actions */}
+                <div className="flex items-center gap-4">
+
+                    {/* Theme Toggle */}
+                    <button
+                        onClick={toggleTheme}
+                        className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition"
+                    >
+                        <img src="./assets/moon_icon.png" className="w-5 dark:hidden" />
+                        <img src="./assets/sun_icon.png" className="w-5 hidden dark:block" />
+                    </button>
+
+                    {/* Contact Button */}
+                    <a
+                        href="/contact"
+                        className="hidden lg:flex items-center gap-2 px-6 py-2 rounded-full border border-gray-300 dark:border-white/20 hover:bg-gray-100 dark:hover:bg-white/10 transition"
+                    >
+                        Contact
+                    </a>
+
+                    {/* Mobile Menu Button */}
+                    <button onClick={() => setIsMenuOpen(true)} className="md:hidden">
+                        <img src="./assets/menu-black.png" className="w-6 dark:hidden" />
+                        <img src="./assets/menu-white.png" className="w-6 hidden dark:block" />
+                    </button>
+                </div>
             </nav>
+
+            {/* MOBILE MENU + OVERLAY */}
+            <AnimatePresence>
+                {isMenuOpen && (
+                    <>
+                        {/* Overlay */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.5 }}
+                            exit={{ opacity: 0 }}
+                            className="fixed inset-0 bg-black z-40"
+                            onClick={() => setIsMenuOpen(false)}
+                        />
+
+                        {/* Side Menu */}
+                        <motion.ul
+                            initial={{ x: 300 }}
+                            animate={{ x: 0 }}
+                            exit={{ x: 300 }}
+                            transition={{ duration: 0.3 }}
+                            className="fixed right-0 top-0 bottom-0 w-64 z-50 h-screen bg-white dark:bg-darkHover shadow-2xl flex flex-col gap-6 px-8 py-20"
+                        >
+                            {/* Close Button */}
+                            <button
+                                onClick={() => setIsMenuOpen(false)}
+                                className="absolute top-5 right-5"
+                            >
+                                ✕
+                            </button>
+
+                            {[
+                                { label: 'Home', link: '/' },
+                                { label: 'About', link: '/about' },
+                                { label: 'Services', link: '/services' },
+                                { label: 'Work', link: '/work' },
+                                { label: 'Contact', link: '/contact' },
+                            ].map(item => (
+                                <li key={item.label}>
+                                    <a
+                                        href={item.link}
+                                        onClick={() => setIsMenuOpen(false)}
+                                        className="text-lg font-medium hover:text-purple-500 transition"
+                                    >
+                                        {item.label}
+                                    </a>
+                                </li>
+                            ))}
+                        </motion.ul>
+                    </>
+                )}
+            </AnimatePresence>
         </>
-    )
+    );
 }
