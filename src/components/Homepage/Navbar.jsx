@@ -1,107 +1,142 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function Navbar() {
+const NAV_LINKS = [
+    { label: 'About', href: '#about' },
+    { label: 'Skills', href: '#skills' },
+    { label: 'Work', href: '#work' },
+    { label: 'Services', href: '#services' },
+    { label: 'Notes', href: '#notes' },
+    { label: 'Contact', href: '#contact' },
+];
 
+export default function Navbar() {
+    const location = useLocation();
+    const onHomePage = location.pathname === '/';
     const [isScroll, setIsScroll] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [theme, setTheme] = useState('light');
+    const [theme, setTheme] = useState(() =>
+        typeof document !== 'undefined' && document.documentElement.classList.contains('dark')
+            ? 'dark'
+            : 'light'
+    );
 
-    // Scroll effect
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScroll(window.scrollY > 50);
-        };
-
-        window.addEventListener('scroll', handleScroll);
+        const handleScroll = () => setIsScroll(window.scrollY > 50);
+        handleScroll();
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Theme init
+    // Lock body scroll while the mobile menu is open, and close it on Escape.
     useEffect(() => {
-        const savedTheme = localStorage.theme;
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (!isMenuOpen) return;
 
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-            document.documentElement.classList.add('dark');
-            setTheme('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-            setTheme('light');
-        }
+        const onKeyDown = (e) => e.key === 'Escape' && setIsMenuOpen(false);
+        const previousOverflow = document.body.style.overflow;
+
+        document.body.style.overflow = 'hidden';
+        window.addEventListener('keydown', onKeyDown);
+
+        return () => {
+            document.body.style.overflow = previousOverflow;
+            window.removeEventListener('keydown', onKeyDown);
+        };
+    }, [isMenuOpen]);
+
+    /*
+     * Single source of truth: React state drives the class, so the two can
+     * never disagree. The initial class is set by the inline script in
+     * index.html, before first paint.
+     */
+    const toggleTheme = useCallback(() => {
+        setTheme((current) => {
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.classList.toggle('dark', next === 'dark');
+            try {
+                localStorage.setItem('theme', next);
+            } catch {
+                /* ignore private-mode failures */
+            }
+            return next;
+        });
     }, []);
-
-    const toggleTheme = () => {
-        const newTheme = theme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
-        document.documentElement.classList.toggle('dark');
-        localStorage.theme = newTheme;
-    };
 
     return (
         <>
-            {/* Navbar */}
-            <nav className={`fixed top-0 w-full z-50 transition-all duration-300 px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between
-                ${isScroll ? "bg-white/60 backdrop-blur-lg shadow-sm dark:bg-darkTheme/70" : ""}
-            `}>
+            <a
+                href="#about"
+                className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-full focus:bg-black focus:px-5 focus:py-2 focus:text-white dark:focus:bg-white dark:focus:text-black"
+            >
+                Skip to content
+            </a>
 
-                {/* Logo */}
-                <a href="/">
-                    <img src="./assets/logo.png" className="w-28 dark:hidden" />
-                    <img src="./assets/logo_dark.png" className="w-28 hidden dark:block" />
-                </a>
+            <nav
+                aria-label="Main navigation"
+                className={`theme-transition fixed top-0 w-full z-50 transition-all duration-300 px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between
+                    ${isScroll ? 'bg-white/70 backdrop-blur-lg shadow-sm dark:bg-darkTheme/70' : ''}`}
+            >
+                <Link to="/#top" aria-label="Binam Nepal — back to top">
+                    <img src="/assets/logo.png" alt="Binam Nepal" className="w-28 dark:hidden" />
+                    <img src="/assets/logo_dark.png" alt="Binam Nepal" className="w-28 hidden dark:block" />
+                </Link>
 
-                {/* Desktop Menu */}
-                <ul className={`hidden md:flex items-center gap-8 rounded-full px-10 py-3 font-Ovo transition-all
-                    ${isScroll ? "" : "bg-white/50 shadow-sm dark:bg-transparent dark:border dark:border-white/20"}
-                `}>
-                    {[
-                        { label: 'Home', link: '/' },
-                        { label: 'About', link: '/about' },
-                        { label: 'Services', link: '/services' },
-                        { label: 'Work', link: '/work' },
-                    ].map(item => (
+                {/* Desktop menu */}
+                <ul
+                    className={`hidden md:flex items-center gap-8 rounded-full px-10 py-3 font-Ovo transition-all
+                        ${isScroll ? '' : 'bg-white/50 shadow-sm dark:bg-transparent dark:border dark:border-white/20'}`}
+                >
+                    {NAV_LINKS.map((item) => (
                         <li key={item.label}>
-                            <a href={item.link} className="hover:text-purple-500 transition">
-                                {item.label}
-                            </a>
+                            {onHomePage ? (
+                                <a href={item.href} className="hover:text-purple-500 transition">
+                                    {item.label}
+                                </a>
+                            ) : (
+                                <Link to={`/${item.href}`} className="hover:text-purple-500 transition">
+                                    {item.label}
+                                </Link>
+                            )}
                         </li>
                     ))}
                 </ul>
 
-                {/* Right Actions */}
                 <div className="flex items-center gap-4">
-
-                    {/* Theme Toggle */}
                     <button
+                        type="button"
                         onClick={toggleTheme}
+                        aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
                         className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition"
                     >
-                        <img src="./assets/moon_icon.png" className="w-5 dark:hidden" />
-                        <img src="./assets/sun_icon.png" className="w-5 hidden dark:block" />
+                        <img src="/assets/moon_icon.png" alt="" aria-hidden="true" className="w-5 dark:hidden" />
+                        <img src="/assets/sun_icon.png" alt="" aria-hidden="true" className="w-5 hidden dark:block" />
                     </button>
 
-                    {/* Contact Button */}
-                    <a
-                        href="/contact"
+                    <Link
+                        to="/#contact"
                         className="hidden lg:flex items-center gap-2 px-6 py-2 rounded-full border border-gray-300 dark:border-white/20 hover:bg-gray-100 dark:hover:bg-white/10 transition"
                     >
                         Contact
-                    </a>
+                    </Link>
 
-                    {/* Mobile Menu Button */}
-                    <button onClick={() => setIsMenuOpen(true)} className="md:hidden">
-                        <img src="./assets/menu-black.png" className="w-6 dark:hidden" />
-                        <img src="./assets/menu-white.png" className="w-6 hidden dark:block" />
+                    <button
+                        type="button"
+                        onClick={() => setIsMenuOpen(true)}
+                        aria-label="Open navigation menu"
+                        aria-expanded={isMenuOpen}
+                        className="md:hidden p-1"
+                    >
+                        <img src="/assets/menu-black.png" alt="" aria-hidden="true" className="w-6 dark:hidden" />
+                        <img src="/assets/menu-white.png" alt="" aria-hidden="true" className="w-6 hidden dark:block" />
                     </button>
                 </div>
             </nav>
 
-            {/* MOBILE MENU + OVERLAY */}
+            {/* Mobile menu */}
             <AnimatePresence>
                 {isMenuOpen && (
                     <>
-                        {/* Overlay */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 0.5 }}
@@ -110,40 +145,46 @@ export default function Navbar() {
                             onClick={() => setIsMenuOpen(false)}
                         />
 
-                        {/* Side Menu */}
-                        <motion.ul
+                        <motion.div
                             initial={{ x: 300 }}
                             animate={{ x: 0 }}
                             exit={{ x: 300 }}
                             transition={{ duration: 0.3 }}
-                            className="fixed right-0 top-0 bottom-0 w-64 z-50 h-screen bg-white dark:bg-darkHover shadow-2xl flex flex-col gap-6 px-8 py-20"
+                            className="fixed right-0 top-0 bottom-0 w-64 z-50 h-screen bg-white dark:bg-darkHover shadow-2xl px-8 py-20"
                         >
-                            {/* Close Button */}
                             <button
+                                type="button"
                                 onClick={() => setIsMenuOpen(false)}
-                                className="absolute top-5 right-5"
+                                aria-label="Close navigation menu"
+                                className="absolute top-5 right-5 text-xl leading-none"
                             >
-                                ✕
+                                &#10005;
                             </button>
 
-                            {[
-                                { label: 'Home', link: '/' },
-                                { label: 'About', link: '/about' },
-                                { label: 'Services', link: '/services' },
-                                { label: 'Work', link: '/work' },
-                                { label: 'Contact', link: '/contact' },
-                            ].map(item => (
-                                <li key={item.label}>
-                                    <a
-                                        href={item.link}
-                                        onClick={() => setIsMenuOpen(false)}
-                                        className="text-lg font-medium hover:text-purple-500 transition"
-                                    >
-                                        {item.label}
-                                    </a>
-                                </li>
-                            ))}
-                        </motion.ul>
+                            <ul className="flex flex-col gap-6">
+                                {NAV_LINKS.map((item) => (
+                                    <li key={item.label}>
+                                        {onHomePage ? (
+                                            <a
+                                                href={item.href}
+                                                onClick={() => setIsMenuOpen(false)}
+                                                className="text-lg font-medium hover:text-purple-500 transition"
+                                            >
+                                                {item.label}
+                                            </a>
+                                        ) : (
+                                            <Link
+                                                to={`/${item.href}`}
+                                                onClick={() => setIsMenuOpen(false)}
+                                                className="text-lg font-medium hover:text-purple-500 transition"
+                                            >
+                                                {item.label}
+                                            </Link>
+                                        )}
+                                    </li>
+                                ))}
+                            </ul>
+                        </motion.div>
                     </>
                 )}
             </AnimatePresence>

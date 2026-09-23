@@ -2,9 +2,64 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/top-img.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Binam Nepal</title>
+
+    <title>Binam Nepal — React Developer</title>
+    <meta
+      name="description"
+      content="Binam Nepal is a web developer based in Kathmandu, Nepal, building fast, responsive, production-ready web applications with React, Tailwind CSS and modern frontend tooling."
+    />
+    <meta name="author" content="Binam Nepal" />
+    <link rel="canonical" href="https://binamnepal.vercel.app/" />
+    <meta name="theme-color" content="#0a0014" />
+
+    <!-- Open Graph / social link previews -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Binam Nepal" />
+    <meta property="og:title" content="Binam Nepal — React Developer" />
+    <meta
+      property="og:description"
+      content="Web developer based in Kathmandu, building fast, responsive, production-ready web applications with React."
+    />
+    <meta property="og:url" content="https://binamnepal.vercel.app/" />
+    <meta property="og:image" content="https://binamnepal.vercel.app/assets/profile-img.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Binam Nepal — React Developer" />
+    <meta
+      name="twitter:description"
+      content="Web developer based in Kathmandu, building fast, responsive, production-ready web applications with React."
+    />
+    <meta name="twitter:image" content="https://binamnepal.vercel.app/assets/profile-img.png" />
+
+    <link rel="icon" type="image/jpeg" href="/top-img.jpg" />
+    <link rel="apple-touch-icon" href="/assets/profile-img.png" />
+
+    <!-- Fonts: these are the families referenced by font-Outfit / font-Ovo in tailwind.config.js -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Ovo&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+      Applies the saved theme BEFORE first paint so dark-mode visitors
+      never see a white flash while React boots.
+    -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (saved === 'dark' || (!saved && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {
+          /* localStorage unavailable (private mode) — fall back to light */
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

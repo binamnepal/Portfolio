@@ -3,15 +3,55 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-white text-black duration-500;
+  html {
+    scroll-behavior: smooth;
   }
+
+  body {
+    @apply bg-white text-black font-Outfit antialiased;
+  }
+
   .dark body {
     @apply bg-darkTheme text-white;
   }
+
+  /* Anchor targets sit below the fixed navbar */
+  section[id] {
+    scroll-margin-top: 6rem;
+  }
+
+  /* Visible keyboard focus everywhere */
+  :focus-visible {
+    @apply outline-none ring-2 ring-purple-500 ring-offset-2 ring-offset-white;
+  }
+
+  .dark :focus-visible {
+    @apply ring-offset-darkTheme;
+  }
 }
-* {
+
+/*
+  Only animate colour-ish properties, and only on elements that opt in.
+  The old `* { transition: ... }` rule forced a 300ms transition onto every
+  node in the tree, which fought with Framer Motion and Lenis.
+*/
+.theme-transition,
+.theme-transition * {
   transition-property: background-color, border-color, color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

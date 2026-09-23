@@ -1,25 +1,21 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import MainLayout from '../layout/MainLayout';
-import Applayout from '../layout/App-layout';
-import Contact from '../components/Homepage/Contact';
-import About from '../components/Homepage/About';  
-import Services from '../components/Homepage/Services';
-import Work from '../components/Homepage/Work';
-import ProtectedRoute from './ProtectedRoute';
-import PublicRoute from './PublicRoute';
+import HomePage from '../layout/App-layout';
+import ProjectDetail from '../pages/ProjectDetail';
+import PostDetail from '../pages/PostDetail';
+import NotFound from '../pages/NotFound';
 
 export default function AppRoute() {
     return (
         <Routes>
-          
             <Route element={<MainLayout />}>
-                <Route path="/" element={<Applayout />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/work" element={<Work />} />
-                <Route path="/contact" element={<Contact />} />
-        </Route>
-            
+                <Route path="/" element={<HomePage />} />
+                <Route path="/work/:slug" element={<ProjectDetail />} />
+                <Route path="/notes/:slug" element={<PostDetail />} />
+                <Route path="/404" element={<NotFound />} />
+                {/* Anything unmatched shows the 404 page rather than silently redirecting home */}
+                <Route path="*" element={<NotFound />} />
+            </Route>
         </Routes>
     );
 }

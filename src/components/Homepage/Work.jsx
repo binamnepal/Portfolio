@@ -1,46 +1,30 @@
-import { motion } from "framer-motion";
-import Footer from "./Footerpage";
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { PROJECTS } from '../../data/projects';
+
+// Project data now lives in src/data/projects.js — it's shared with the
+// /work/:slug case study pages, so add or edit projects there.
 
 export default function Work() {
-    const projects = [
-        {
-            name: "Pasupati Planers (React)",
-            bgImage: "/assets/work-1.png",
-            description: "Web Design",
-            link: "https://event-reservation-lake.vercel.app/",
-        },
-        {
-            name: "Eventu (HTML-CSS, Flask)",
-            bgImage: "/assets/work-4.png",
-            description: "UI/UX Design",
-            link: "",
-        },
-    ];
-
     return (
-        <motion.section
-            id="work"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="w-full px-[10%] py-24 scroll-mt-20"
-        >
-            {/* Header */}
+        <section id="work" className="w-full px-[10%] py-24">
             <div className="text-center mb-16">
-                <motion.h4
+                <motion.p
                     initial={{ y: -20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
+                    viewport={{ once: true, amount: 0.3 }}
                     transition={{ duration: 0.5 }}
-                    className="text-lg font-Ovo text-gray-500 dark:text-white/70"
+                    className="text-purple-500 tracking-widest uppercase text-sm mb-3"
                 >
                     My portfolio
-                </motion.h4>
+                </motion.p>
 
                 <motion.h2
                     initial={{ y: -20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.2, duration: 0.6 }}
-                    className="text-4xl md:text-5xl font-Ovo mt-2"
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ delay: 0.1, duration: 0.6 }}
+                    className="text-4xl md:text-5xl font-bold font-Ovo"
                 >
                     Featured Work
                 </motion.h2>
@@ -48,95 +32,105 @@ export default function Work() {
                 <motion.p
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    transition={{ delay: 0.4, duration: 0.6 }}
-                    className="max-w-2xl mx-auto mt-5 text-gray-600 dark:text-white/80"
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                    className="max-w-2xl mx-auto mt-5 text-gray-600 dark:text-gray-400"
                 >
-                    A selection of projects that highlight my experience in building responsive,
-                    user-focused, and performance-driven applications.
+                    A selection of projects that highlight my experience building responsive,
+                    user-focused, performance-driven applications.
                 </motion.p>
             </div>
 
-            {/* Projects Grid */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {projects.map((project, index) => (
-                    <motion.div
-                        key={project.name}
+                {PROJECTS.map((project, index) => (
+                    <motion.article
+                        key={project.slug}
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.2, duration: 0.5 }}
-                        whileHover={{ scale: 1.03 }}
-                        className="relative group rounded-xl overflow-hidden shadow-md cursor-pointer"
-                        onClick={() =>
-                            project.link &&
-                            window.open(project.link, "_blank", "noopener,noreferrer")
-                        }
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ delay: index * 0.15, duration: 0.5 }}
+                        className="group flex flex-col rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                     >
-                        {/* Background Image */}
-                        <div
-                            className="w-full aspect-square bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                            style={{ backgroundImage: `url(${project.bgImage})` }}
-                        />
+                        <div className="overflow-hidden">
+                            <img
+                                src={project.image}
+                                alt={`Screenshot of ${project.name}`}
+                                loading="lazy"
+                                className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                        </div>
 
-                        {/* Overlay */}
-                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-all duration-500"></div>
+                        <div className="flex flex-col flex-1 p-5">
+                            <h3 className="text-lg font-semibold">{project.name}</h3>
 
-                        {/* Content */}
-                        <div className="absolute inset-0 flex flex-col justify-end p-5 text-white">
-                            <div className="transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                                <h3 className="text-lg font-semibold">
-                                    {project.name}
-                                </h3>
-                                <p className="text-sm text-gray-200">
-                                    {project.description}
-                                </p>
-                            </div>
+                            <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                                {project.description}
+                            </p>
 
-                            {/* Button / Icon */}
-                            <div
-                                className={`mt-4 flex items-center justify-between transition-all duration-300
-                                ${project.link ? "opacity-100" : "opacity-40"}`}
-                            >
-                                <span className="text-sm">
-                                    {project.link ? "View Project" : "No link available"}
-                                </span>
+                            <ul className="flex flex-wrap gap-2 mt-4">
+                                {project.stack.map((tech) => (
+                                    <li
+                                        key={tech}
+                                        className="px-2.5 py-1 text-xs rounded-full bg-purple-50 text-purple-700 dark:bg-purple-500/15 dark:text-purple-300"
+                                    >
+                                        {tech}
+                                    </li>
+                                ))}
+                            </ul>
 
-                                <div className="w-9 h-9 flex items-center justify-center rounded-full bg-white text-black group-hover:bg-lime-300 transition">
-                                    <img
-                                        src="/assets/send-icon.png"
-                                        alt="open project"
-                                        className="w-4"
-                                    />
-                                </div>
+                            <div className="flex items-center gap-3 mt-auto pt-5">
+                                {project.live && (
+                                    <a
+                                        href={project.live}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 px-4 py-2 text-sm rounded-full bg-black text-white dark:bg-white dark:text-black hover:opacity-85 transition"
+                                    >
+                                        Live demo
+                                        <span aria-hidden="true">&#8599;</span>
+                                    </a>
+                                )}
+
+                                {project.code && (
+                                    <a
+                                        href={project.code}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 px-4 py-2 text-sm rounded-full border border-gray-300 dark:border-white/20 hover:bg-gray-100 dark:hover:bg-white/10 transition"
+                                    >
+                                        Code
+                                    </a>
+                                )}
+
+                                <Link
+                                    to={`/work/${project.slug}`}
+                                    className="inline-flex items-center gap-1 px-4 py-2 text-sm text-purple-500 hover:text-purple-600 transition"
+                                >
+                                    Case study <span aria-hidden="true">&#8594;</span>
+                                </Link>
                             </div>
                         </div>
-                    </motion.div>
+                    </motion.article>
                 ))}
             </div>
 
-            {/* CTA Button */}
             <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
-                className="text-center mt-20"
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="text-center mt-16"
             >
                 <a
-                    href="#"
+                    href="https://github.com/binamnepal?tab=repositories"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-8 py-3 border border-gray-300 dark:border-white/30 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition"
                 >
-                    Show more
-                    <img
-                        src="/assets/right-arrow-bold.png"
-                        className="w-4 dark:hidden"
-                    />
-                    <img
-                        src="/assets/right-arrow-bold-dark.png"
-                        className="w-4 hidden dark:block"
-                    />
+                    See more on GitHub
+                    <span aria-hidden="true">&#8599;</span>
                 </a>
             </motion.div>
-
-            <Footer />
-        </motion.section>
+        </section>
     );
 }
