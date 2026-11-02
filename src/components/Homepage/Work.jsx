@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { PROJECTS } from '../../data/projects';
+import ProjectCover from '../ProjectCover';
 import { useI18n } from '../../i18n/useI18n';
 
 // Project data now lives in src/data/projects.js — it's shared with the
@@ -58,10 +59,10 @@ export default function Work() {
                             className="group flex flex-col rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                         >
                             <div className="overflow-hidden">
-                                <img
-                                    src={project.image}
+                                <ProjectCover
+                                    project={project}
                                     alt={t('work.screenshotAlt', { name: project.name })}
-                                    loading="lazy"
+                                    lazy
                                     className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
                             </div>

@@ -40,10 +40,25 @@ export default function PostDetail() {
             <h1 className="text-3xl sm:text-4xl font-bold font-Ovo mt-3 mb-8">{post.title}</h1>
 
             <div className="space-y-5 text-gray-700 dark:text-gray-300 leading-relaxed">
-                {post.body.map((paragraph, index) => (
-                    // Paragraphs are plain strings with no HTML, so index is a stable key here.
-                    <p key={index}>{paragraph}</p>
-                ))}
+                {post.body.map((block, index) =>
+                    // Blocks are static content, so index is a stable key here.
+                    typeof block === 'string' ? (
+                        <p key={index}>{block}</p>
+                    ) : (
+                        <section key={index}>
+                            {block.heading && (
+                                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                                    {block.heading}
+                                </h2>
+                            )}
+                            <ul className="list-disc pl-6 space-y-2 marker:text-purple-500">
+                                {block.list.map((item, i) => (
+                                    <li key={i}>{item}</li>
+                                ))}
+                            </ul>
+                        </section>
+                    )
+                )}
             </div>
         </motion.article>
     );

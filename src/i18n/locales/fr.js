@@ -63,6 +63,22 @@ export default {
                 description: "Bachelor en technologies de l'information",
             },
             projects: {
+        'logicpixel-whatsapp-agent': {
+            description:
+                "Un assistant WhatsApp multi-entreprises qui répond aux demandes 24 h/24, recueille les coordonnées, classe les prospects par étape, alerte le personnel et passe la main aux humains.",
+        },
+        aniraga: {
+            description:
+                "Un site d'anime full-stack avec catalogue, programme hebdomadaire, comptes, listes de suivi et un lecteur vidéo qui bascule automatiquement entre les sources.",
+        },
+        eventu: {
+            description:
+                "Un site d'événements Flask avec inscription, connexion, page des événements, formulaire pour organiser un événement et tableau de bord d'administration sur MySQL.",
+        },
+        'style-pro': {
+            description:
+                "Un front-end multipage pour une boutique de vêtements avec boutique, panier, paiement, fonctionnalités et contact.",
+        },
                 name: 'Projets',
                 description: 'Frontends React et API REST Django',
             },
@@ -227,6 +243,60 @@ export default {
      * Les articles non traduits restent affichés en anglais.
      */
     posts: {
+        'my-todo-list': {
+            title: 'Ma liste de choses à faire : ce que je construis et corrige ensuite',
+            excerpt:
+                "Ce qui est sur mon bureau en ce moment : un agent IA WhatsApp proche de son premier pilote, une application de recrutement à terminer, des API capricieuses à dompter et une checklist de sécurité à laquelle je reviens sans cesse.",
+            body: [
+                "Une liste évolutive de ce sur quoi je travaille, tirée directement de mes projets en cours. L'écrire en public me garde honnête, et je cocherai les éléments au fur et à mesure de leur mise en ligne.",
+                {
+                    heading: 'Agent IA WhatsApp pour des agences de conseil en études à l\'étranger',
+                    list: [
+                        'Passer du numéro de test gratuit de Meta à un vrai numéro avec un jeton d\'accès permanent.',
+                        'Envoyer des modèles approuvés une fois la fenêtre de réponse de 24 heures de WhatsApp fermée.',
+                        "Ajouter des limites d'utilisation et des compteurs de facturation par client.",
+                        'Construire un tableau de bord pour le personnel et des connexions limitées à chaque client.',
+                        'Déployer sur Render avec Neon Postgres et un ping keep-alive, puis régénérer tous les secrets de test avant la mise en production.',
+                        'Lancer le premier pilote gratuit avec une vraie agence.',
+                    ],
+                },
+                {
+                    heading: 'Corriger ce qui est instable',
+                    list: [
+                        "Choisir un modèle de chat Groq pris en charge et ajouter une solution de repli pour qu'un mauvais nom de modèle ne bloque pas le bot.",
+                        "Faire répondre le bot dans une seule langue et un seul alphabet, en suivant le dernier message de l'étudiant au lieu de mélanger anglais et dévanagari.",
+                        "Empêcher l'API de streaming de l'application d'anime de s'endormir sur l'offre gratuite.",
+                        "Remplacer l'API amont défaillante du projet de streaming d'anime et terminer la mise en page mobile.",
+                    ],
+                },
+                {
+                    heading: "Terminer l'application de recrutement",
+                    list: [
+                        'Paiements via eSewa, prix en NPR.',
+                        'Heures de travail sur les réservations.',
+                        'Tableaux de bord distincts pour les clients et les travailleurs.',
+                        'Un parcours « mot de passe oublié ».',
+                        'Une page de profil plus riche : photo modifiable, coordonnées et badges de vérification.',
+                    ],
+                },
+                {
+                    heading: 'Réflexes de sécurité auxquels je reviens toujours',
+                    list: [
+                        'Ajouter des hachages Subresource Integrity à chaque script CDN.',
+                        'Assainir avec DOMPurify tout HTML injecté depuis des réponses AJAX.',
+                        'Mettre en place une Content Security Policy.',
+                        'Mettre à jour les bibliothèques obsolètes avant qu\'elles ne deviennent le maillon faible.',
+                    ],
+                },
+                {
+                    heading: 'Ce site',
+                    list: [
+                        "Écrire d'autres notes comme celle-ci.",
+                        'Traduire chaque nouvelle note en allemand et en français.',
+                    ],
+                },
+            ],
+        },
         'rebuilding-this-portfolio': {
             title: 'Refonte de ce portfolio : ce qui était vraiment cassé',
             excerpt:

@@ -1,6 +1,7 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { getProjectBySlug } from '../data/projects';
+import ProjectCover from '../components/ProjectCover';
 import { useI18n } from '../i18n/useI18n';
 
 export default function ProjectDetail() {
@@ -38,10 +39,10 @@ export default function ProjectDetail() {
                 ))}
             </ul>
 
-            <img
-                src={project.image}
+            <ProjectCover
+                project={project}
                 alt={t('project.screenshotAlt', { name: project.name })}
-                className="w-full rounded-2xl shadow-xl mb-10"
+                className="w-full rounded-2xl shadow-xl mb-10 aspect-[16/9] object-cover"
             />
 
             <div className="flex gap-3 mb-12">

@@ -63,6 +63,22 @@ export default {
                 description: 'Bachelor in Informationstechnologie',
             },
             projects: {
+        'logicpixel-whatsapp-agent': {
+            description:
+                'Ein WhatsApp-Assistent für mehrere Unternehmen, der Anfragen rund um die Uhr beantwortet, Kontaktdaten sammelt, Leads in Phasen einteilt, Mitarbeitende benachrichtigt und Chats an Menschen übergibt.',
+        },
+        aniraga: {
+            description:
+                'Eine Fullstack-Anime-Website mit durchsuchbarem Katalog, Wochenplan, Konten, Merklisten und einem Videoplayer, der automatisch auf andere Quellen ausweicht.',
+        },
+        eventu: {
+            description:
+                'Eine Flask-Eventseite mit Registrierung, Login, Eventübersicht, Formular zum Veranstalten und Admin-Dashboard auf MySQL-Basis.',
+        },
+        'style-pro': {
+            description:
+                'Ein mehrseitiges Frontend für einen Kleidungsshop mit Shop-, Warenkorb-, Checkout-, Features- und Kontaktseite.',
+        },
                 name: 'Projekte',
                 description: 'React-Frontends und Django-REST-APIs',
             },
@@ -228,6 +244,60 @@ export default {
      * Nicht übersetzte Beiträge werden weiterhin auf Englisch angezeigt.
      */
     posts: {
+        'my-todo-list': {
+            title: 'Meine To-do-Liste: Woran ich als Nächstes arbeite',
+            excerpt:
+                'Was gerade auf meinem Schreibtisch liegt: ein WhatsApp-KI-Agent kurz vor dem ersten Pilotprojekt, eine Recruiting-App zum Fertigstellen, wackelige APIs und eine Sicherheits-Checkliste, zu der ich immer wieder zurückkehre.',
+            body: [
+                'Eine laufende Liste dessen, woran ich arbeite, direkt aus meinen aktuellen Projekten. Sie öffentlich aufzuschreiben hält mich ehrlich, und ich hake Punkte ab, sobald sie fertig sind.',
+                {
+                    heading: 'WhatsApp-KI-Agent für Studienberatungen im Ausland',
+                    list: [
+                        'Von Metas kostenloser Testnummer auf eine echte Nummer mit dauerhaftem Zugriffstoken umsteigen.',
+                        'Genehmigte Vorlagen senden, sobald das 24-Stunden-Antwortfenster von WhatsApp geschlossen ist.',
+                        'Nutzungslimits und Abrechnungszähler pro Kunde einführen.',
+                        'Ein Mitarbeiter-Dashboard und mandantenbezogene Logins bauen.',
+                        'Auf Render mit Neon Postgres und einem Keep-alive-Ping bereitstellen und vor dem Livegang alle Test-Secrets neu erzeugen.',
+                        'Das erste kostenlose Pilotprojekt mit einer echten Beratung durchführen.',
+                    ],
+                },
+                {
+                    heading: 'Wackeliges beheben',
+                    list: [
+                        'Ein unterstütztes Groq-Chatmodell auswählen und einen Fallback einbauen, damit ein falscher Modellname den Bot nicht lahmlegt.',
+                        'Den Bot in einer Sprache und Schrift antworten lassen, passend zur letzten Nachricht der Studierenden, statt Englisch und Devanagari zu mischen.',
+                        'Verhindern, dass die Streaming-API der Anime-App im kostenlosen Tarif einschläft.',
+                        'Die defekte Upstream-API im Anime-Streaming-Projekt ersetzen und das mobile Layout fertigstellen.',
+                    ],
+                },
+                {
+                    heading: 'Die Recruiting-App fertigstellen',
+                    list: [
+                        'Zahlungen über eSewa, Preise in NPR.',
+                        'Arbeitsstunden bei Buchungen.',
+                        'Getrennte Dashboards für Kunden und Arbeitskräfte.',
+                        'Ein Ablauf für „Passwort vergessen“.',
+                        'Eine umfangreichere Profilseite: bearbeitbares Foto, Kontaktdaten und Verifizierungs-Badges.',
+                    ],
+                },
+                {
+                    heading: 'Sicherheitsgewohnheiten, zu denen ich immer wieder zurückkehre',
+                    list: [
+                        'Jedem CDN-Skript Subresource-Integrity-Hashes hinzufügen.',
+                        'Per AJAX eingefügtes HTML mit DOMPurify bereinigen.',
+                        'Eine Content Security Policy einsetzen.',
+                        'Veraltete Bibliotheken aktualisieren, bevor sie zum schwächsten Glied werden.',
+                    ],
+                },
+                {
+                    heading: 'Diese Website',
+                    list: [
+                        'Mehr Notizen wie diese schreiben.',
+                        'Jede neue Notiz ins Deutsche und Französische übersetzen.',
+                    ],
+                },
+            ],
+        },
         'rebuilding-this-portfolio': {
             title: 'Dieses Portfolio neu aufgebaut: Was wirklich kaputt war',
             excerpt:
