@@ -1,13 +1,17 @@
 import { motion } from 'framer-motion';
+import { useI18n } from '../../i18n/useI18n';
 
 /*
  * Edit freely — add or remove skills, or change groups. `icon` should point
  * to a file in /public/assets. If you don't have an icon for something yet,
  * omit `icon` and the label alone will still render.
+ *
+ * `id` maps to skills.categories.<id> in the locale files. Skill names are
+ * product names, so they are not translated.
  */
 const SKILL_GROUPS = [
     {
-        category: 'Frontend',
+        id: 'frontend',
         skills: [
             { name: 'React', icon: '/assets/react.png' },
             { name: 'JavaScript', icon: '/assets/js.png' },
@@ -16,7 +20,7 @@ const SKILL_GROUPS = [
         ],
     },
     {
-        category: 'Backend & Data',
+        id: 'backend',
         skills: [
             { name: 'Flask', icon: '/assets/flask.png' },
             { name: 'Python', icon: '/assets/python.png' },
@@ -25,7 +29,7 @@ const SKILL_GROUPS = [
         ],
     },
     {
-        category: 'Tools',
+        id: 'tools',
         skills: [
             { name: 'Git & GitHub', icon: '/assets/git.png' },
             { name: 'VS Code', icon: '/assets/vscode.png' },
@@ -36,6 +40,8 @@ const SKILL_GROUPS = [
 ];
 
 export default function Skills() {
+    const { t } = useI18n();
+
     return (
         <section id="skills" className="w-full px-[10%] py-24">
             <motion.p
@@ -45,7 +51,7 @@ export default function Skills() {
                 transition={{ duration: 0.5 }}
                 className="text-center text-purple-500 tracking-widest uppercase text-sm mb-3"
             >
-                What I work with
+                {t('skills.eyebrow')}
             </motion.p>
 
             <motion.h2
@@ -55,20 +61,20 @@ export default function Skills() {
                 transition={{ delay: 0.1, duration: 0.5 }}
                 className="text-center text-4xl md:text-5xl font-bold font-Ovo mb-14"
             >
-                Skills &amp; Tools
+                {t('skills.title')}
             </motion.h2>
 
             <div className="grid sm:grid-cols-3 gap-10">
                 {SKILL_GROUPS.map((group, groupIndex) => (
                     <motion.div
-                        key={group.category}
+                        key={group.id}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ delay: groupIndex * 0.15 }}
                     >
                         <h3 className="text-sm uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-5">
-                            {group.category}
+                            {t(`skills.categories.${group.id}`)}
                         </h3>
 
                         <ul className="space-y-3">

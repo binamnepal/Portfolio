@@ -58,6 +58,22 @@
         } catch (e) {
           /* localStorage unavailable (private mode) — fall back to light */
         }
+
+        /*
+          Same language choice as src/i18n/config.js (saved choice, else the
+          browser language), applied to <html lang> before React boots.
+        */
+        try {
+          var lang = localStorage.getItem('lang');
+          var supported = ['en', 'de', 'fr']; // keep in sync with src/i18n/config.js
+          if (supported.indexOf(lang) === -1) {
+            lang = (navigator.language || '').slice(0, 2).toLowerCase();
+            if (supported.indexOf(lang) === -1) lang = 'en';
+          }
+          document.documentElement.lang = lang;
+        } catch (e) {
+          /* keep the default lang="en" */
+        }
       })();
     </script>
   </head>

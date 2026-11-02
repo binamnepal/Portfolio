@@ -12,6 +12,9 @@
  *     role: 'Client, Pasupati Planners',
  * }
  *
+ * Quotes are displayed exactly as written in every language (only the section
+ * heading is translated), so keep each quote in the language it was given in.
+ *
  * A short LinkedIn recommendation works well as a source. The Testimonials
  * section simply doesn't render until this array has at least one entry —
  * nothing to remember to delete.

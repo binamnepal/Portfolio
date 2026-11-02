@@ -1,17 +1,21 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useI18n } from '../../i18n/useI18n';
+import LanguageToggle from './LanguageToggle';
 
+// `key` maps to nav.<key> in the locale files; labels are translated at render time.
 const NAV_LINKS = [
-    { label: 'About', href: '#about' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Work', href: '#work' },
-    { label: 'Services', href: '#services' },
-    { label: 'Notes', href: '#notes' },
-    { label: 'Contact', href: '#contact' },
+    { key: 'about', href: '#about' },
+    { key: 'skills', href: '#skills' },
+    { key: 'work', href: '#work' },
+    { key: 'services', href: '#services' },
+    { key: 'notes', href: '#notes' },
+    { key: 'contact', href: '#contact' },
 ];
 
 export default function Navbar() {
+    const { t } = useI18n();
     const location = useLocation();
     const onHomePage = location.pathname === '/';
     const [isScroll, setIsScroll] = useState(false);
@@ -69,44 +73,46 @@ export default function Navbar() {
                 href="#about"
                 className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:rounded-full focus:bg-black focus:px-5 focus:py-2 focus:text-white dark:focus:bg-white dark:focus:text-black"
             >
-                Skip to content
+                {t('nav.skipToContent')}
             </a>
 
             <nav
-                aria-label="Main navigation"
+                aria-label={t('nav.mainLabel')}
                 className={`theme-transition fixed top-0 w-full z-50 transition-all duration-300 px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between
                     ${isScroll ? 'bg-white/70 backdrop-blur-lg shadow-sm dark:bg-darkTheme/70' : ''}`}
             >
-                <Link to="/#top" aria-label="Binam Nepal — back to top">
+                <Link to="/#top" aria-label={t('nav.backToTop')}>
                     <img src="/assets/logo.png" alt="Binam Nepal" className="w-28 dark:hidden" />
                     <img src="/assets/logo_dark.png" alt="Binam Nepal" className="w-28 hidden dark:block" />
                 </Link>
 
                 {/* Desktop menu */}
                 <ul
-                    className={`hidden md:flex items-center gap-8 rounded-full px-10 py-3 font-Ovo transition-all
+                    className={`hidden md:flex items-center gap-5 lg:gap-8 rounded-full px-6 lg:px-10 py-3 text-sm lg:text-base font-Ovo transition-all
                         ${isScroll ? '' : 'bg-white/50 shadow-sm dark:bg-transparent dark:border dark:border-white/20'}`}
                 >
                     {NAV_LINKS.map((item) => (
-                        <li key={item.label}>
+                        <li key={item.key}>
                             {onHomePage ? (
                                 <a href={item.href} className="hover:text-purple-500 transition">
-                                    {item.label}
+                                    {t(`nav.${item.key}`)}
                                 </a>
                             ) : (
                                 <Link to={`/${item.href}`} className="hover:text-purple-500 transition">
-                                    {item.label}
+                                    {t(`nav.${item.key}`)}
                                 </Link>
                             )}
                         </li>
                     ))}
                 </ul>
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 sm:gap-4">
+                    <LanguageToggle />
+
                     <button
                         type="button"
                         onClick={toggleTheme}
-                        aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                        aria-label={theme === 'dark' ? t('nav.switchToLight') : t('nav.switchToDark')}
                         className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition"
                     >
                         <img src="/assets/moon_icon.png" alt="" aria-hidden="true" className="w-5 dark:hidden" />
@@ -117,13 +123,13 @@ export default function Navbar() {
                         to="/#contact"
                         className="hidden lg:flex items-center gap-2 px-6 py-2 rounded-full border border-gray-300 dark:border-white/20 hover:bg-gray-100 dark:hover:bg-white/10 transition"
                     >
-                        Contact
+                        {t('nav.contact')}
                     </Link>
 
                     <button
                         type="button"
                         onClick={() => setIsMenuOpen(true)}
-                        aria-label="Open navigation menu"
+                        aria-label={t('nav.openMenu')}
                         aria-expanded={isMenuOpen}
                         className="md:hidden p-1"
                     >
@@ -155,7 +161,7 @@ export default function Navbar() {
                             <button
                                 type="button"
                                 onClick={() => setIsMenuOpen(false)}
-                                aria-label="Close navigation menu"
+                                aria-label={t('nav.closeMenu')}
                                 className="absolute top-5 right-5 text-xl leading-none"
                             >
                                 &#10005;
@@ -163,14 +169,14 @@ export default function Navbar() {
 
                             <ul className="flex flex-col gap-6">
                                 {NAV_LINKS.map((item) => (
-                                    <li key={item.label}>
+                                    <li key={item.key}>
                                         {onHomePage ? (
                                             <a
                                                 href={item.href}
                                                 onClick={() => setIsMenuOpen(false)}
                                                 className="text-lg font-medium hover:text-purple-500 transition"
                                             >
-                                                {item.label}
+                                                {t(`nav.${item.key}`)}
                                             </a>
                                         ) : (
                                             <Link
@@ -178,7 +184,7 @@ export default function Navbar() {
                                                 onClick={() => setIsMenuOpen(false)}
                                                 className="text-lg font-medium hover:text-purple-500 transition"
                                             >
-                                                {item.label}
+                                                {t(`nav.${item.key}`)}
                                             </Link>
                                         )}
                                     </li>

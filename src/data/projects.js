@@ -3,6 +3,10 @@
  * ProjectDetail.jsx (the /work/:slug case study page) both read from here,
  * so you only ever update a project in one place.
  *
+ * The text fields here are the English source. To translate a project, add an
+ * entry under `projects[<slug>]` in src/i18n/locales/de.js — any field you
+ * leave out there simply shows in English.
+ *
  * Leave `live` or `code` as an empty string and that button just won't
  * render — no dead links. Leave `role`, `problem`, `approach`, `result`
  * as the placeholder text until you fill in the real specifics; they're

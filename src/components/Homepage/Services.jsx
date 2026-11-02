@@ -1,27 +1,16 @@
 import { motion } from 'framer-motion';
+import { useI18n } from '../../i18n/useI18n';
 
+// Names and descriptions live in the locale files under services.items.<id>.
 const SERVICES = [
-    {
-        name: 'Web Development',
-        icon: '/assets/code-icon.png',
-        description:
-            'Production-ready React applications — component architecture, routing, API integration, and performance tuning.',
-    },
-    {
-        name: 'Web Design',
-        icon: '/assets/web-icon.png',
-        description:
-            'Visually strong, responsive interfaces that prioritise usability and carry a consistent brand identity.',
-    },
-    {
-        name: 'UI/UX Design',
-        icon: '/assets/ui-icon.png',
-        description:
-            'Mapping the user journey and interaction patterns to solve complex problems with simple, obvious flows.',
-    },
+    { id: 'development', icon: '/assets/code-icon.png' },
+    { id: 'webDesign', icon: '/assets/web-icon.png' },
+    { id: 'uiux', icon: '/assets/ui-icon.png' },
 ];
 
 export default function Services() {
+    const { t } = useI18n();
+
     return (
         <section id="services" className="w-full px-[12%] py-24">
             <motion.p
@@ -31,7 +20,7 @@ export default function Services() {
                 transition={{ duration: 0.5 }}
                 className="text-center text-purple-500 tracking-widest uppercase text-sm mb-3"
             >
-                What I offer
+                {t('services.eyebrow')}
             </motion.p>
 
             <motion.h2
@@ -41,7 +30,7 @@ export default function Services() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="text-center text-4xl md:text-5xl font-bold font-Ovo"
             >
-                My Services
+                {t('services.title')}
             </motion.h2>
 
             <motion.p
@@ -51,14 +40,13 @@ export default function Services() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-center max-w-2xl mx-auto mt-5 mb-14 text-gray-600 dark:text-gray-400"
             >
-                Based in Kathmandu, I build fast, responsive, and visually appealing interfaces that
-                deliver great user experiences.
+                {t('services.intro')}
             </motion.p>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {SERVICES.map((service, index) => (
                     <motion.div
-                        key={service.name}
+                        key={service.id}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.2 }}
@@ -69,10 +57,10 @@ export default function Services() {
                             <img src={service.icon} alt="" aria-hidden="true" className="w-6 dark:invert" />
                         </div>
 
-                        <h3 className="text-lg font-semibold mb-3">{service.name}</h3>
+                        <h3 className="text-lg font-semibold mb-3">{t(`services.items.${service.id}.name`)}</h3>
 
                         <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                            {service.description}
+                            {t(`services.items.${service.id}.description`)}
                         </p>
                     </motion.div>
                 ))}

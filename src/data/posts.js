@@ -3,6 +3,9 @@
  * it will automatically appear on the homepage and get its own page at
  * /notes/:slug. `body` is an array of paragraphs (plain strings, no HTML
  * needed) so it's easy to write without touching JSX.
+ *
+ * This is the English version. To translate a post, add an entry under
+ * `posts[<slug>]` in src/i18n/locales/de.js (title, excerpt, body).
  */
 export const POSTS = [
     {

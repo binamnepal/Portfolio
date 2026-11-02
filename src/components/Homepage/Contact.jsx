@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { motion } from 'framer-motion';
+import { useI18n } from '../../i18n/useI18n';
 
 /*
  * Free, no-backend form delivery. Get a key at https://web3forms.com —
@@ -10,10 +11,15 @@ import { motion } from 'framer-motion';
  */
 const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_KEY;
 
+/*
+ * The messages below are translation keys, not display text. They are
+ * translated when rendered (t(errors.name)), so switching language updates
+ * any error that is already on screen.
+ */
 const ContactSchema = Yup.object().shape({
-    name: Yup.string().min(2, 'That name looks too short').required('Name is required'),
-    email: Yup.string().email('Please enter a valid email').required('Email is required'),
-    message: Yup.string().min(10, 'Message must be at least 10 characters').required('Message is required'),
+    name: Yup.string().min(2, 'contact.errors.nameShort').required('contact.errors.nameRequired'),
+    email: Yup.string().email('contact.errors.emailInvalid').required('contact.errors.emailRequired'),
+    message: Yup.string().min(10, 'contact.errors.messageShort').required('contact.errors.messageRequired'),
 });
 
 const fieldClasses = (hasError) =>
@@ -24,16 +30,15 @@ const fieldClasses = (hasError) =>
     }`;
 
 export default function Contact() {
-    const [status, setStatus] = useState(null); // { type: 'success' | 'error', message: string }
+    const { t } = useI18n();
+    // { type: 'success' | 'error', key?: translation key, text?: raw server message }
+    const [status, setStatus] = useState(null);
 
     const handleSubmit = async (values, { resetForm, setSubmitting }) => {
         setStatus(null);
 
         if (!ACCESS_KEY) {
-            setStatus({
-                type: 'error',
-                message: 'Form is not configured yet. Email me directly at binamnepal173@gmail.com.',
-            });
+            setStatus({ type: 'error', key: 'contact.status.notConfigured' });
             setSubmitting(false);
             return;
         }
@@ -56,16 +61,17 @@ export default function Contact() {
             const data = await response.json();
 
             if (data.success) {
-                setStatus({ type: 'success', message: "Thanks! Your message is on its way — I'll reply soon." });
+                setStatus({ type: 'success', key: 'contact.status.success' });
                 resetForm();
             } else {
-                setStatus({ type: 'error', message: data.message || 'Something went wrong. Please try again.' });
+                setStatus(
+                    data.message
+                        ? { type: 'error', text: data.message }
+                        : { type: 'error', key: 'contact.status.failed' }
+                );
             }
         } catch {
-            setStatus({
-                type: 'error',
-                message: 'Could not send right now. Please email binamnepal173@gmail.com instead.',
-            });
+            setStatus({ type: 'error', key: 'contact.status.network' });
         } finally {
             setSubmitting(false);
         }
@@ -83,11 +89,10 @@ export default function Contact() {
                 transition={{ duration: 0.5 }}
                 className="text-center"
             >
-                <p className="text-purple-500 tracking-widest uppercase text-sm mb-3">Connect with me</p>
-                <h2 className="text-4xl md:text-5xl font-bold font-Ovo">Get in touch</h2>
+                <p className="text-purple-500 tracking-widest uppercase text-sm mb-3">{t('contact.eyebrow')}</p>
+                <h2 className="text-4xl md:text-5xl font-bold font-Ovo">{t('contact.title')}</h2>
                 <p className="max-w-2xl mx-auto mt-5 mb-12 text-gray-600 dark:text-gray-400">
-                    I&apos;m currently open to new opportunities. Whether you have a question or just want
-                    to say hi, I&apos;ll do my best to get back to you.
+                    {t('contact.intro')}
                 </p>
             </motion.div>
 
@@ -99,9 +104,9 @@ export default function Contact() {
                     transition={{ duration: 0.5 }}
                     className="flex-1 space-y-8"
                 >
-                    <h3 className="text-2xl font-Ovo font-semibold">Let&apos;s talk about everything!</h3>
+                    <h3 className="text-2xl font-Ovo font-semibold">{t('contact.sideTitle')}</h3>
                     <p className="text-gray-600 dark:text-gray-400">
-                        Don&apos;t like forms? Email me directly or find me on my social handles.
+                        {t('contact.sideText')}
                     </p>
 
                     <div className="space-y-4">
@@ -127,7 +132,7 @@ export default function Contact() {
                             >
                                 &#128205;
                             </span>
-                            Kathmandu, Nepal
+                            {t('contact.location')}
                         </p>
                     </div>
                 </motion.div>
@@ -159,12 +164,12 @@ export default function Contact() {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div className="space-y-1">
                                         <label htmlFor="name" className="sr-only">
-                                            Name
+                                            {t('contact.nameLabel')}
                                         </label>
                                         <input
                                             id="name"
                                             name="name"
-                                            placeholder="Name"
+                                            placeholder={t('contact.namePlaceholder')}
                                             autoComplete="name"
                                             value={values.name}
                                             onChange={handleChange}
@@ -173,19 +178,19 @@ export default function Contact() {
                                             className={fieldClasses(errors.name && touched.name)}
                                         />
                                         {errors.name && touched.name && (
-                                            <p className="text-xs text-red-500 ml-1">{errors.name}</p>
+                                            <p className="text-xs text-red-500 ml-1">{t(errors.name)}</p>
                                         )}
                                     </div>
 
                                     <div className="space-y-1">
                                         <label htmlFor="email" className="sr-only">
-                                            Email
+                                            {t('contact.emailLabel')}
                                         </label>
                                         <input
                                             id="email"
                                             name="email"
                                             type="email"
-                                            placeholder="Email"
+                                            placeholder={t('contact.emailPlaceholder')}
                                             autoComplete="email"
                                             value={values.email}
                                             onChange={handleChange}
@@ -194,20 +199,20 @@ export default function Contact() {
                                             className={fieldClasses(errors.email && touched.email)}
                                         />
                                         {errors.email && touched.email && (
-                                            <p className="text-xs text-red-500 ml-1">{errors.email}</p>
+                                            <p className="text-xs text-red-500 ml-1">{t(errors.email)}</p>
                                         )}
                                     </div>
                                 </div>
 
                                 <div className="space-y-1">
                                     <label htmlFor="message" className="sr-only">
-                                        Your message
+                                        {t('contact.messageLabel')}
                                     </label>
                                     <textarea
                                         id="message"
                                         name="message"
                                         rows="5"
-                                        placeholder="Your Message"
+                                        placeholder={t('contact.messagePlaceholder')}
                                         value={values.message}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
@@ -215,7 +220,7 @@ export default function Contact() {
                                         className={`${fieldClasses(errors.message && touched.message)} resize-none`}
                                     />
                                     {errors.message && touched.message && (
-                                        <p className="text-xs text-red-500 ml-1">{errors.message}</p>
+                                        <p className="text-xs text-red-500 ml-1">{t(errors.message)}</p>
                                     )}
                                 </div>
 
@@ -224,7 +229,7 @@ export default function Contact() {
                                     disabled={isSubmitting}
                                     className="w-full sm:w-auto px-10 py-3 bg-black dark:bg-white dark:text-black text-white rounded-full hover:opacity-85 transition-all inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
-                                    {isSubmitting ? 'Sending…' : 'Send message'}
+                                    {isSubmitting ? t('contact.sending') : t('contact.send')}
                                     <span aria-hidden="true">&#8594;</span>
                                 </button>
 
@@ -238,7 +243,7 @@ export default function Contact() {
                                             status.type === 'success' ? 'text-green-600' : 'text-red-500'
                                         }`}
                                     >
-                                        {status.message}
+                                        {status.key ? t(status.key) : status.text}
                                     </motion.p>
                                 )}
                             </Form>

@@ -1,10 +1,13 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { getProjectBySlug } from '../data/projects';
+import { useI18n } from '../i18n/useI18n';
 
 export default function ProjectDetail() {
+    const { t, localize } = useI18n();
     const { slug } = useParams();
-    const project = getProjectBySlug(slug);
+    // English text comes from data/projects.js; other languages override it.
+    const project = localize('projects', getProjectBySlug(slug));
 
     if (!project) return <Navigate to="/404" replace />;
 
@@ -19,7 +22,7 @@ export default function ProjectDetail() {
                 to="/#work"
                 className="text-sm text-purple-500 hover:text-purple-600 inline-flex items-center gap-1 mb-8"
             >
-                <span aria-hidden="true">&#8592;</span> Back to work
+                <span aria-hidden="true">&#8592;</span> {t('project.backToWork')}
             </Link>
 
             <h1 className="text-4xl sm:text-5xl font-bold font-Ovo mb-4">{project.name}</h1>
@@ -37,7 +40,7 @@ export default function ProjectDetail() {
 
             <img
                 src={project.image}
-                alt={`Screenshot of ${project.name}`}
+                alt={t('project.screenshotAlt', { name: project.name })}
                 className="w-full rounded-2xl shadow-xl mb-10"
             />
 
@@ -49,7 +52,7 @@ export default function ProjectDetail() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-5 py-2.5 text-sm rounded-full bg-black text-white dark:bg-white dark:text-black hover:opacity-85 transition"
                     >
-                        Live demo <span aria-hidden="true">&#8599;</span>
+                        {t('project.liveDemo')} <span aria-hidden="true">&#8599;</span>
                     </a>
                 )}
                 {project.code && (
@@ -59,7 +62,7 @@ export default function ProjectDetail() {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-5 py-2.5 text-sm rounded-full border border-gray-300 dark:border-white/20 hover:bg-gray-100 dark:hover:bg-white/10 transition"
                     >
-                        View code
+                        {t('project.viewCode')}
                     </a>
                 )}
             </div>
@@ -67,28 +70,28 @@ export default function ProjectDetail() {
             <div className="space-y-10 text-gray-700 dark:text-gray-300 leading-relaxed">
                 <section>
                     <h2 className="text-sm uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-2">
-                        Role
+                        {t('project.role')}
                     </h2>
                     <p>{project.role}</p>
                 </section>
 
                 <section>
                     <h2 className="text-sm uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-2">
-                        The problem
+                        {t('project.problem')}
                     </h2>
                     <p>{project.problem}</p>
                 </section>
 
                 <section>
                     <h2 className="text-sm uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-2">
-                        My approach
+                        {t('project.approach')}
                     </h2>
                     <p>{project.approach}</p>
                 </section>
 
                 <section>
                     <h2 className="text-sm uppercase tracking-widest text-gray-500 dark:text-gray-400 mb-2">
-                        Result
+                        {t('project.result')}
                     </h2>
                     <p>{project.result}</p>
                 </section>

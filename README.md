@@ -17,6 +17,7 @@ animations, and a working contact form.
 | Animation | Framer Motion, Lenis (smooth scroll) |
 | Forms | Formik + Yup validation, Web3Forms delivery |
 | Routing | React Router 7 |
+| Languages | English / German / French, built-in lightweight i18n (no extra dependency) |
 | Hosting | Vercel |
 
 ## Getting started
@@ -56,6 +57,7 @@ src/
 ├─ components/Homepage/   # Header, About, Skills, Work, Services, Testimonials, Notes, Contact, Footer, Navbar
 ├─ pages/                 # ProjectDetail (/work/:slug), PostDetail (/notes/:slug), NotFound
 ├─ data/                  # projects.js, posts.js, testimonials.js — edit content here
+├─ i18n/                  # I18nProvider, useI18n(), config.js, locales/en.js, de.js, fr.js
 ├─ layout/
 │  ├─ MainLayout.jsx      # Navbar + Footer shell + scroll-to-hash + Analytics
 │  └─ App-layout.jsx      # Composes the single scrolling page
@@ -105,3 +107,21 @@ Vercel — no extra setup needed. It's silent in local dev.
 ## License
 
 All rights reserved © Binam Nepal.
+
+## Languages (English / German / French)
+
+The navbar has a language menu (EN / DE / FR). The choice is saved in `localStorage`; on a
+first visit the site follows the browser language (German and French browsers get their
+language, everything else English).
+
+- **UI text** lives in `src/i18n/locales/en.js`, `de.js` and `fr.js`. Use it in a component with
+  `const { t } = useI18n();` then `t('nav.about')`. A key missing from `de.js` falls back to English.
+- **Project and blog text** stays in English in `src/data/projects.js` / `posts.js`. translated
+  versions go under `projects[<slug>]` / `posts[<slug>]` in each locale file; any field you leave out shows in English.
+- **Adding a language** (e.g. Spanish): create `locales/es.js` (copy `en.js`), register it in
+  `src/i18n/config.js` (`DICTIONARIES` and `LANGUAGES`) and add its code to the `supported` list in the
+  inline script in `index.html`. Non-Latin scripts also need a matching Google Font in `index.html`.
+- **CV:** `header.cvFile` in each locale file points at the PDF for that language. All currently use the
+  English CV — drop a translated PDF into `public/assets/` and update that locale file when you have one.
+- `<html lang>`, the page title and the meta description update with the language. Social-preview
+  tags (Open Graph / Twitter) in `index.html` are static and stay English.

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useI18n } from '../../i18n/useI18n';
 
 const SOCIALS = [
     { label: 'GitHub', href: 'https://github.com/binamnepal' },
@@ -7,10 +8,12 @@ const SOCIALS = [
 ];
 
 export default function Footerpage() {
+    const { t } = useI18n();
+
     return (
         <footer className="mt-12 px-[8%] py-10 border-t border-gray-200 dark:border-white/10">
             <div className="text-center mb-10">
-                <Link to="/#top" aria-label="Back to top">
+                <Link to="/#top" aria-label={t('footer.backToTop')}>
                     <img src="/assets/logo.png" alt="Binam Nepal" className="w-32 mx-auto mb-3 dark:hidden" />
                     <img
                         src="/assets/logo_dark.png"
@@ -35,7 +38,7 @@ export default function Footerpage() {
 
             <div className="flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-gray-600 dark:text-gray-400">
                 <p className="text-center sm:text-left">
-                    &copy; {new Date().getFullYear()} &bull; Binam Nepal &bull; All rights reserved.
+                    &copy; {new Date().getFullYear()} &bull; Binam Nepal &bull; {t('footer.rights')}
                 </p>
 
                 <ul className="flex items-center gap-6">

@@ -1,9 +1,10 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { getPostBySlug } from '../data/posts';
+import { useI18n } from '../i18n/useI18n';
 
-function formatDate(isoDate) {
-    return new Date(isoDate).toLocaleDateString('en-US', {
+function formatDate(isoDate, locale) {
+    return new Date(isoDate).toLocaleDateString(locale, {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
@@ -11,8 +12,10 @@ function formatDate(isoDate) {
 }
 
 export default function PostDetail() {
+    const { t, localize, locale } = useI18n();
     const { slug } = useParams();
-    const post = getPostBySlug(slug);
+    // English text comes from data/posts.js; other languages override it.
+    const post = localize('posts', getPostBySlug(slug));
 
     if (!post) return <Navigate to="/404" replace />;
 
@@ -27,11 +30,11 @@ export default function PostDetail() {
                 to="/#notes"
                 className="text-sm text-purple-500 hover:text-purple-600 inline-flex items-center gap-1 mb-8"
             >
-                <span aria-hidden="true">&#8592;</span> Back to notes
+                <span aria-hidden="true">&#8592;</span> {t('notes.backToNotes')}
             </Link>
 
             <time dateTime={post.date} className="text-sm text-gray-500 dark:text-gray-400">
-                {formatDate(post.date)}
+                {formatDate(post.date, locale)}
             </time>
 
             <h1 className="text-3xl sm:text-4xl font-bold font-Ovo mt-3 mb-8">{post.title}</h1>

@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
+import { useI18n } from '../../i18n/useI18n';
 
 export default function Header() {
+    const { t } = useI18n();
+
     return (
         <section
             id="top"
@@ -19,14 +22,14 @@ export default function Header() {
             >
                 <img
                     src="/assets/profile-img.png"
-                    alt="Portrait of Binam Nepal"
+                    alt={t('header.portraitAlt')}
                     width="128"
                     height="128"
                     className="w-32 h-32 object-cover rounded-full border-4 border-white dark:border-gray-800 shadow-2xl"
                 />
                 <span
                     className="absolute bottom-2 right-2 w-4 h-4 bg-green-500 border-2 border-white rounded-full"
-                    title="Available for work"
+                    title={t('header.available')}
                 />
             </motion.div>
 
@@ -36,7 +39,8 @@ export default function Header() {
                 transition={{ delay: 0.3 }}
                 className="text-lg md:text-xl text-gray-700 dark:text-gray-300"
             >
-                Hi, I&apos;m <span className="font-semibold text-black dark:text-white">Binam Nepal</span>
+                {t('header.greeting')}{' '}
+                <span className="font-semibold text-black dark:text-white">Binam Nepal</span>
             </motion.p>
 
             <motion.h1
@@ -45,9 +49,9 @@ export default function Header() {
                 transition={{ delay: 0.5 }}
                 className="text-4xl sm:text-6xl lg:text-[72px] font-bold leading-tight"
             >
-                Building modern <br className="hidden md:block" />
+                {t('header.titleLine1')} <br className="hidden md:block" />
                 <span className="bg-gradient-to-r from-purple-500 to-orange-400 bg-clip-text text-transparent">
-                    web experiences
+                    {t('header.titleHighlight')}
                 </span>
             </motion.h1>
 
@@ -57,8 +61,7 @@ export default function Header() {
                 transition={{ delay: 0.7 }}
                 className="max-w-2xl text-gray-600 dark:text-gray-400 text-lg leading-relaxed"
             >
-                I design and develop fast, scalable, and user-focused web applications using React and
-                modern technologies. Based in Kathmandu, working with clients worldwide.
+                {t('header.intro')}
             </motion.p>
 
             <motion.div
@@ -73,17 +76,17 @@ export default function Header() {
                     href="#contact"
                     className="px-8 py-3 rounded-full bg-gradient-to-r from-purple-500 to-orange-400 text-white font-medium shadow-lg"
                 >
-                    Hire Me
+                    {t('header.hireMe')}
                 </motion.a>
 
                 <motion.a
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    href="/assets/Binam%20nepal%20CV.pdf"
-                    download="Binam-Nepal-CV.pdf"
+                    href={t('header.cvFile')}
+                    download={t('header.cvFilename')}
                     className="px-8 py-3 rounded-full border border-gray-300 dark:border-white/20 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-white/10 transition"
                 >
-                    Download CV
+                    {t('header.downloadCv')}
                 </motion.a>
             </motion.div>
         </section>
